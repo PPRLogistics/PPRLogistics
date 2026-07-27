@@ -45,26 +45,14 @@ export default function Header() {
 
   return (
     <>
-      {/* Top Bar Info */}
-      <div className="bg-navy-dark text-white text-xs py-2 px-4 hidden md:block border-b border-white/10">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center space-x-6">
-            <span className="flex items-center gap-1.5"><Phone size={13} className="text-primary" /> +993 65892496</span>
-            <span className="flex items-center gap-1.5"><Mail size={13} className="text-primary" /> info@prplogistic.com</span>
-          </div>
-          <div className="flex items-center space-x-4">
-            <span className="flex items-center gap-1"><Globe size={13} className="text-primary" /> EN</span>
-          </div>
-        </div>
-      </div>
 
-      {/* Main Header */}
+
+      { /*   Main Header */}
       <header
-        className={`sticky top-0 z-50 transition-all duration-300 ${
-          isScrolled
+        className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled
             ? 'bg-white shadow-lg py-3'
             : 'bg-white/90 backdrop-blur-md py-5'
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex justify-between items-center">
           {/* Logo */}
@@ -88,11 +76,10 @@ export default function Header() {
               <div key={link.name} className="relative group/nav">
                 {link.submenu ? (
                   <button
-                    className={`flex items-center space-x-1 font-medium text-sm transition-colors py-2 ${
-                      location.pathname.startsWith(link.path)
+                    className={`flex items-center space-x-1 font-medium text-sm transition-colors py-2 ${location.pathname.startsWith(link.path)
                         ? 'text-primary'
                         : 'text-gray-700 hover:text-primary'
-                    }`}
+                      }`}
                   >
                     <span>{link.name}</span>
                     <ChevronDown size={14} className="transition-transform group-hover/nav:rotate-185" />
@@ -100,11 +87,10 @@ export default function Header() {
                 ) : (
                   <Link
                     to={link.path}
-                    className={`font-medium text-sm transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full ${
-                      location.pathname === link.path
+                    className={`font-medium text-sm transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full ${location.pathname === link.path
                         ? 'text-primary after:w-full'
                         : 'text-gray-700 hover:text-primary'
-                    }`}
+                      }`}
                   >
                     {link.name}
                   </Link>
@@ -117,11 +103,10 @@ export default function Header() {
                       <Link
                         key={sub.name}
                         to={sub.path}
-                        className={`block px-5 py-2.5 text-sm transition-all hover:bg-primary/5 hover:text-primary hover:translate-x-1 ${
-                          location.pathname === sub.path
+                        className={`block px-5 py-2.5 text-sm transition-all hover:bg-primary/5 hover:text-primary hover:translate-x-1 ${location.pathname === sub.path
                             ? 'text-primary bg-primary/5 font-medium'
                             : 'text-gray-600'
-                        }`}
+                          }`}
                       >
                         {sub.name}
                       </Link>
@@ -167,9 +152,8 @@ export default function Header() {
                         <span>{link.name}</span>
                         <ChevronDown
                           size={18}
-                          className={`transition-transform duration-200 ${
-                            isServicesOpen ? 'rotate-180 text-primary' : 'text-gray-500'
-                          }`}
+                          className={`transition-transform duration-200 ${isServicesOpen ? 'rotate-180 text-primary' : 'text-gray-500'
+                            }`}
                         />
                       </button>
                       {isServicesOpen && (
@@ -189,9 +173,8 @@ export default function Header() {
                   ) : (
                     <Link
                       to={link.path}
-                      className={`block font-semibold py-2 border-b border-gray-50 ${
-                        location.pathname === link.path ? 'text-primary' : 'text-gray-800 hover:text-primary'
-                      }`}
+                      className={`block font-semibold py-2 border-b border-gray-50 ${location.pathname === link.path ? 'text-primary' : 'text-gray-800 hover:text-primary'
+                        }`}
                     >
                       {link.name}
                     </Link>
