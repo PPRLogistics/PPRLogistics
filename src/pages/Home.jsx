@@ -244,20 +244,20 @@ export default function Home() {
       {/* Map Embed Section */}
       <section className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
-          <h2 className="text-2xl font-extrabold text-navy-dark">Find Our Offices</h2>
+          <h2 className="text-2xl font-extrabold text-navy-dark">Find Our Location</h2>
           <p className="text-gray-500 text-xs">
-            We operate out of regional logistics hubs in Turkmenistan and Dubai.
+            Falcon Papers and Plastics — 330 W Armory Dr, South Holland, IL 60473
           </p>
         </div>
         <div className="w-full h-96 rounded-2xl overflow-hidden shadow-lg border border-gray-200">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63244.27142449133!2d58.3970962861034!3d37.92116371375187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f6ffb58764c981f%3A0x65e64d37212ea2b0!2zQW5kYWx5cCBrw7bDp2VzaQ!5e0!3m2!1sen!2s!4v1759348000927!5m2!1sen!2s"
+            src="https://maps.google.com/maps?q=Falcon%20Papers%20and%20Plastics%2C%20330%20W%20Armory%20Dr%2C%20South%20Holland%2C%20IL%2060473&t=&z=15&ie=UTF8&iwloc=&output=embed"
             width="100%"
             height="100%"
             style={{ border: 0 }}
             allowFullScreen=""
             loading="lazy"
-            title="Office Location"
+            title="Falcon Papers and Plastics - South Holland, IL"
           ></iframe>
         </div>
       </section>

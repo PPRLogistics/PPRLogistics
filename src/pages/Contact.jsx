@@ -16,29 +16,66 @@ export default function Contact() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+
     e.preventDefault();
+
     setIsSubmitting(true);
-    setTimeout(() => {
+
+    try {
+
+      const response = await fetch("http://localhost:5000/api/contact", {
+
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+
+        setIsSuccess(true);
+
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+
+      } else {
+
+        alert(data.message);
+
+      }
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert("Something went wrong.");
+
+    } finally {
+
       setIsSubmitting(false);
-      setIsSuccess(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 1500);
+
+    }
+
   };
 
   const offices = [
     {
-      country: 'Turkmenistan Office',
-      address: '334, 1958 (Andalyp) Street, Berkararlyk District, Ashgabat, Turkmenistan',
-      phones: ['+993 65892496', '+993 65892497'],
-      whatsapp: '+995 555 442557',
+      country: 'U.S Office',
+      address: '330 W Armory Dr, South Holland, IL 60473, USA',
+      phones: ['+1 (732) 218-9902'],
+      whatsapp: '+1 (732) 218-9902',
     },
-    {
-      country: 'United Arab Emirates Office',
-      address: 'Unit 7, 20th Floor, Prime Tower, Business Bay, Dubai, United Arab Emirates',
-      phones: ['+98 9159161665'],
-      whatsapp: '+971 50 655 1006',
-    },
+
   ];
 
   return (
@@ -202,9 +239,8 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full py-3 px-5 rounded-lg text-white font-bold text-xs tracking-wide shadow-md transition-colors flex items-center justify-center gap-2 cursor-pointer ${
-                    isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary hover:bg-primary-dark'
-                  }`}
+                  className={`w-full py-3 px-5 rounded-lg text-white font-bold text-xs tracking-wide shadow-md transition-colors flex items-center justify-center gap-2 cursor-pointer ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary hover:bg-primary-dark'
+                    }`}
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                   <Send size={14} />

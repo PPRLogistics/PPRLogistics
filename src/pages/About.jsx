@@ -87,26 +87,16 @@ export default function About() {
       {/* Office Locations summary */}
       <section className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
         <div className="bg-white p-8 rounded-2xl border border-gray-150/50 shadow-md space-y-4">
-          <h3 className="font-bold text-navy-dark text-lg border-b border-gray-100 pb-3">Ashgabat Office</h3>
+          <h3 className="font-bold text-navy-dark text-lg border-b border-gray-100 pb-3">US Office</h3>
           <p className="text-gray-600">
-            Conveniently situated in Turkmenistan to coordinate land and rail transit crossing Central Asia and the Caucasus.
+            Conveniently situated in USA to coordinate land and rail transit crossing Central Asia and the Caucasus.
           </p>
           <div className="text-xs text-gray-500 space-y-1">
-            <p><strong>Address:</strong> 334, 1958 (Andalyp) Street, Berkararlyk District, Ashgabat</p>
-            <p><strong>Hours:</strong> Mon - Fri (7:00 AM - 4:00 PM), Sat (7:00 AM - 2:00 PM)</p>
+            <p><strong>Address:</strong>330 W Armory Dr, South Holland, IL 60473, USA</p>
+            <p><strong>Hours:</strong> Mon - Fri (7:00 AM - 4:00 PM)</p>
           </div>
         </div>
 
-        <div className="bg-white p-8 rounded-2xl border border-gray-150/50 shadow-md space-y-4">
-          <h3 className="font-bold text-navy-dark text-lg border-b border-gray-100 pb-3">Dubai Office</h3>
-          <p className="text-gray-600">
-            Positioned in Business Bay, Dubai to manage global sea and air cargo contracts and corporate finance.
-          </p>
-          <div className="text-xs text-gray-500 space-y-1">
-            <p><strong>Address:</strong> Unit 7, 20th Floor, Prime Tower, Business Bay, Dubai, UAE</p>
-            <p><strong>Hours:</strong> Mon - Fri (9:00 AM - 6:00 PM)</p>
-          </div>
-        </div>
       </section>
     </div>
   );
