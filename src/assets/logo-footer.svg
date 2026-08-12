@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 110" fill="none">
+  <g transform="translate(5, 5)">
+    <!-- First 'P' - Signature Blue -->
+    <path d="M 5,95 L 28,5 L 85,5 C 110,5 125,17 119,39 C 113,61 93,72 68,72 L 40,72 L 34,95 Z M 52,50 L 66,50 C 77,50 85,45 88,34 C 91,24 86,19 75,19 L 60,19 Z" fill="#2563EB" />
+    
+    <!-- Second 'P' - Signature Blue -->
+    <path d="M 98,95 L 121,5 L 178,5 C 203,5 218,17 212,39 C 206,61 186,72 161,72 L 133,72 L 127,95 Z M 145,50 L 159,50 C 170,50 178,45 181,34 C 184,24 179,19 168,19 L 153,19 Z" fill="#2563EB" />
+    
+    <!-- 'R' with Road Graphic -->
+    <!-- Road Swoosh (Pure white curve) -->
+    <path d="M 190,95 C 193,65 215,25 265,5 C 235,15 215,48 208,95 Z" fill="#FFFFFF" />
+    <!-- Lane Markings on Road -->
+    <path d="M 216,80 L 219,68 M 224,53 L 228,42 M 234,30 L 240,21" stroke="#0F172A" stroke-width="3" stroke-linecap="round" opacity="0.6" />
+    
+    <!-- R Top Loop - Pure White for high contrast -->
+    <path d="M 235,5 L 280,5 C 302,5 315,16 310,33 C 305,50 288,60 266,60 L 230,60 Z M 250,40 L 263,40 C 272,40 279,35 281,26 C 283,18 279,14 270,14 L 257,14 Z" fill="#FFFFFF" />
+    
+    <!-- R Leg - Signature Blue -->
+    <path d="M 242,60 L 272,60 L 305,95 L 275,95 Z" fill="#2563EB" />
+
+    <!-- Text: LOGISTICS & Subtitle -->
+    <g transform="translate(325, 0)">
+      <!-- LOGISTICS - Pure White -->
+      <text x="0" y="62" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-style="italic" font-size="46" letter-spacing="4" fill="#FFFFFF">
+        LOGISTICS
+      </text>
+      <!-- Subtitle - Light Slate -->
+      <text x="2" y="88" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="12" letter-spacing="2.8" fill="#94A3B8">
+        DELIVERING MORE. CONNECTING FUTURES.
+      </text>
+    </g>
+  </g>
+</svg>

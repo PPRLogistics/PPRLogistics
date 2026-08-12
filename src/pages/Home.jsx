@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Clock, Award, CheckCircle, ArrowRight, Anchor, Train, Plane, Truck } from 'lucide-react';
 import BlogSlider from '../components/BlogSlider';
+import heroTruckImg from '../assets/hero-truck.png';
+import pprHeroVideo from '../assets/PPR_Video.mp4';
 
 export default function Home() {
   const features = [
@@ -45,53 +47,58 @@ export default function Home() {
   return (
     <div className="space-y-24 pb-20">
       {/* Hero Section */}
-      <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
-        {/* Background Video */}
-        <div className="absolute inset-0 z-0">
+      <section className="relative h-[90vh] min-h-[620px] flex items-center overflow-hidden">
+        {/* Background Hero Video */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="w-full h-full object-cover"
+            poster={heroTruckImg}
+            style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
           >
-            <source
-              type="video/mp4"
-              src="https://prplogistic.com/wp-content/uploads/2025/09/prp.mp4"
-            />
+            <source src={pprHeroVideo} type="video/mp4" />
           </video>
-          {/* Overlay Mask */}
-          <div className="absolute inset-0 video-mask opacity-85"></div>
+          {/* Dark overlay - preserved for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/40 to-transparent pointer-events-none"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-black/10 pointer-events-none"></div>
         </div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center text-white space-y-6 animate-fade-in-up">
-          <span className="text-xs md:text-sm font-bold uppercase tracking-widest text-primary bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10">
-            Global Transit Solutions
-          </span>
-          <h1 className="text-3xl md:text-6xl font-extrabold tracking-tight leading-tight uppercase">
-            PPR International <br className="hidden md:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-300">
-              Transport & Logistics
+        {/* Hero Left Content Container */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 md:px-12 w-full">
+          <div className="max-w-[580px] text-left space-y-7 text-white animate-fade-in-up">
+            <span className="inline-flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-white bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/15">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+              Global Transit & Supply Chain
             </span>
-          </h1>
-          <p className="text-sm md:text-lg max-w-2xl mx-auto text-gray-200 leading-relaxed font-light">
-            Operates extensively in the fields of road, rail, sea, air, and multimodal freight forwarding. Leveraging its expertise and professional capabilities, the company successfully provides comprehensive international transport services globally.
-          </p>
-          <div className="pt-4 flex flex-col sm:flex-row justify-center items-center gap-4">
-            <Link
-              to="/contact"
-              className="w-full sm:w-auto px-8 py-3.5 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 transition-all text-sm flex items-center justify-center gap-2 group"
-            >
-              Order a transport
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link
-              to="/contact"
-              className="w-full sm:w-auto px-8 py-3.5 bg-white/10 hover:bg-white/15 text-white font-semibold rounded-xl border border-white/20 backdrop-blur-md hover:-translate-y-0.5 transition-all text-sm flex items-center justify-center"
-            >
-              Contact us
-            </Link>
+
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.12] text-white">
+              PPR International <br />
+              <span className="text-primary font-black">
+                Transport & Logistics
+              </span>
+            </h1>
+
+            <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-light">
+              Connecting global markets with end-to-end road, rail, air, and ocean freight forwarding. Reliable, SLA-backed transit solutions engineered for modern supply chains.
+            </p>
+
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-5">
+              <Link
+                to="/contact"
+                className="px-8 py-4 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 transition-all text-base flex items-center justify-center gap-2.5 group"
+              >
+                Get a Quote
+                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                to="/services"
+                className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl border border-white/25 backdrop-blur-md hover:-translate-y-0.5 transition-all text-base flex items-center justify-center"
+              >
+                Our Services
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -246,18 +253,18 @@ export default function Home() {
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
           <h2 className="text-2xl font-extrabold text-navy-dark">Find Our Location</h2>
           <p className="text-gray-500 text-xs">
-            Falcon Papers and Plastics — 330 W Armory Dr, South Holland, IL 60473
+            PPR Logistics — 334 W Armory Dr, Thornton, IL 60476
           </p>
         </div>
         <div className="w-full h-96 rounded-2xl overflow-hidden shadow-lg border border-gray-200">
           <iframe
-            src="https://maps.google.com/maps?q=Falcon%20Papers%20and%20Plastics%2C%20330%20W%20Armory%20Dr%2C%20South%20Holland%2C%20IL%2060473&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            src="https://maps.google.com/maps?q=334%20W%20Armory%20Dr%2C%20Thornton%2C%20IL%2060476&t=&z=15&ie=UTF8&iwloc=&output=embed"
             width="100%"
             height="100%"
             style={{ border: 0 }}
             allowFullScreen=""
             loading="lazy"
-            title="Falcon Papers and Plastics - South Holland, IL"
+            title="Falcon Papers and Plastics - Thornton, IL"
           ></iframe>
         </div>
       </section>
