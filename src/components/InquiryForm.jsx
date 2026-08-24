@@ -66,7 +66,7 @@ export default function InquiryForm({ serviceType = 'General Freight' }) {
           <div className="pt-4">
             <button
               onClick={() => setIsSuccess(false)}
-              className="px-6 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl text-xs uppercase tracking-wider transition-colors shadow-md cursor-pointer"
+              className="btn-primary"
             >
               Submit Another Inquiry
             </button>
@@ -269,7 +269,7 @@ export default function InquiryForm({ serviceType = 'General Freight' }) {
               className={`w-full py-4 px-6 rounded-xl text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-primary/25 transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer ${
                 isSubmitting
                   ? 'bg-slate-400 cursor-not-allowed'
-                  : 'bg-primary hover:bg-primary-dark active:scale-[0.99]'
+                  : 'btn-primary'
               }`}
             >
               {isSubmitting ? (

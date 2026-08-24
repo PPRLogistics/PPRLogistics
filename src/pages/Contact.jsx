@@ -84,12 +84,10 @@ export default function Contact() {
   return (
     <div className="space-y-16 pb-20 font-sans">
       {/* Page Header Banner */}
-      <section className="bg-[#0b132b] py-20 text-white text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-600/20 via-transparent to-transparent pointer-events-none"></div>
+      <section className="bg-[color:var(--color-navy-dark)] py-20 text-white text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[color:var(--color-primary)]/20 via-transparent to-transparent pointer-events-none"></div>
         <div className="relative z-10 max-w-4xl mx-auto px-6 space-y-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-blue-200 bg-white/10 px-4 py-1.5 rounded-full border border-white/15 inline-block">
-            24/7 Global Communications
-          </span>
+          <div className="badge mx-auto">24/7 Global Communications</div>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Contact Our Dispatch Desk</h1>
           <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-normal leading-relaxed">
             Have questions about freight rates, route schedules, or custom clearance documentation? Connect directly with our logistics managers.
@@ -111,27 +109,29 @@ export default function Contact() {
 
           <div className="space-y-6">
             {offices.map((office) => (
-              <div key={office.country} className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-md card-hover-elevation space-y-4">
+              <div key={office.country} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4 hover:shadow-md transition-shadow">
                 <h3 className="font-extrabold text-slate-900 text-base border-b border-slate-100 pb-3 flex items-center justify-between">
                   <span>{office.country}</span>
-                  <span className="text-[10px] font-bold text-primary bg-primary/5 px-2.5 py-0.5 rounded-full">Active Desk</span>
+                  <span className="text-[11px] font-bold text-[var(--color-primary)] bg-[var(--color-primary-muted)] px-2.5 py-0.5 rounded-full border border-orange-500/20">
+                    Active Desk
+                  </span>
                 </h3>
                 <ul className="space-y-3 text-xs text-slate-600">
                   <li className="flex gap-2.5">
-                    <MapPin size={16} className="text-primary shrink-0 mt-0.5" />
-                    <span className="leading-relaxed">{office.address}</span>
+                    <MapPin size={16} className="text-[var(--color-primary)] shrink-0 mt-0.5" />
+                    <span className="leading-relaxed text-slate-700 font-medium">{office.address}</span>
                   </li>
                   <li className="flex gap-2.5">
-                    <Phone size={16} className="text-primary shrink-0 mt-0.5" />
+                    <Phone size={16} className="text-[var(--color-primary)] shrink-0 mt-0.5" />
                     <div>
                       {office.phones.map((p) => (
-                        <p key={p} className="font-semibold text-slate-800">{p}</p>
+                        <p key={p} className="font-semibold text-slate-900">{p}</p>
                       ))}
                     </div>
                   </li>
                   <li className="flex gap-2.5">
-                    <Clock size={16} className="text-primary shrink-0 mt-0.5" />
-                    <span>WhatsApp Connect: <strong className="text-slate-800">{office.whatsapp}</strong></span>
+                    <Clock size={16} className="text-[var(--color-primary)] shrink-0 mt-0.5" />
+                    <span className="text-slate-600">WhatsApp Connect: <strong className="text-slate-900">{office.whatsapp}</strong></span>
                   </li>
                 </ul>
               </div>
@@ -139,14 +139,14 @@ export default function Contact() {
           </div>
 
           {/* Email Support Card */}
-          <div className="bg-slate-900 text-white p-6 rounded-3xl border border-slate-800 flex items-start gap-4 shadow-xl">
-            <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-white shrink-0 shadow-md">
+          <div className="bg-[var(--color-navy)] text-white p-6 rounded-2xl border border-white/10 flex items-start gap-4 shadow-xl">
+            <div className="w-12 h-12 rounded-xl bg-[var(--color-primary)] flex items-center justify-center text-white shrink-0 shadow-md">
               <Mail size={22} />
             </div>
             <div className="space-y-1">
-              <h4 className="font-extrabold text-sm text-white">General & Enterprise Inquiries</h4>
-              <p className="text-xs text-slate-300">Fast 24-hour response turnaround on global routes.</p>
-              <a href="mailto:info@prplogistic.com" className="text-primary-light font-bold text-xs hover:underline pt-1 inline-block">
+              <h4 className="font-extrabold text-sm text-white">General &amp; Enterprise Inquiries</h4>
+              <p className="text-xs text-[var(--color-text-on-dark)]">Fast 24-hour response turnaround on global routes.</p>
+              <a href="mailto:info@prplogistic.com" className="text-[var(--color-primary-light)] font-bold text-xs hover:underline pt-1 inline-block">
                 info@prplogistic.com
               </a>
             </div>
@@ -155,7 +155,7 @@ export default function Contact() {
 
         {/* Contact Form (7 columns) */}
         <div className="lg:col-span-7">
-          <div className="bg-white p-6 sm:p-8 md:p-10 rounded-3xl shadow-xl border border-slate-200/80">
+          <div className="bg-white p-6 sm:p-8 md:p-10 rounded-2xl shadow-xl border border-slate-200/80">
             {isSuccess ? (
               <div className="text-center py-12 space-y-5 animate-fade-in-up">
                 <div className="w-16 h-16 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto shadow-inner border border-green-200">
@@ -167,7 +167,7 @@ export default function Contact() {
                 </p>
                 <button
                   onClick={() => setIsSuccess(false)}
-                  className="mt-4 px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-colors shadow-md cursor-pointer"
+                  className="btn-primary"
                 >
                   Send Another Message
                 </button>
@@ -175,7 +175,7 @@ export default function Contact() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-1 pb-4 border-b border-slate-100">
-                  <span className="text-xs font-bold text-primary uppercase tracking-widest">Direct Message</span>
+                  <span className="text-xs font-bold text-[var(--color-primary)] uppercase tracking-widest">Direct Message</span>
                   <h3 className="text-2xl font-extrabold text-slate-900">Send an Inquiry</h3>
                   <p className="text-slate-500 text-xs">Fill out the parameters below to connect with a freight specialist.</p>
                 </div>
@@ -183,7 +183,7 @@ export default function Contact() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   {/* Name */}
                   <div>
-                    <label className="block text-[11px] font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
                       Your Name *
                     </label>
                     <input
@@ -193,13 +193,13 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="John Smith"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm font-medium text-slate-800"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] transition"
                     />
                   </div>
 
                   {/* Email */}
                   <div>
-                    <label className="block text-[11px] font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
                       Corporate Email *
                     </label>
                     <input
@@ -209,14 +209,14 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="john@company.com"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm font-medium text-slate-800"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] transition"
                     />
                   </div>
                 </div>
 
                 {/* Subject */}
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
                     Subject / Route Concern *
                   </label>
                   <input
@@ -226,13 +226,13 @@ export default function Contact() {
                     value={formData.subject}
                     onChange={handleChange}
                     placeholder="Wagon rates, air charter inquiry, customs clearance, etc."
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm font-medium text-slate-800"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] transition"
                   />
                 </div>
 
                 {/* Message */}
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
                     Message Details *
                   </label>
                   <textarea
@@ -242,7 +242,7 @@ export default function Contact() {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Provide details about your cargo volume, origin, target timeframe, or specialized handling..."
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm font-medium text-slate-800 resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] transition resize-none"
                   />
                 </div>
 
@@ -251,7 +251,7 @@ export default function Contact() {
                   type="submit"
                   disabled={isSubmitting}
                   className={`w-full py-4 px-6 rounded-xl text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center gap-2.5 cursor-pointer ${
-                    isSubmitting ? 'bg-slate-400 cursor-not-allowed' : 'bg-primary hover:bg-primary-dark active:scale-[0.99]'
+                    isSubmitting ? 'bg-slate-400 cursor-not-allowed' : 'btn-primary'
                   }`}
                 >
                   {isSubmitting ? 'Transmitting Message...' : 'Send Message'}

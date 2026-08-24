@@ -13,12 +13,10 @@ export default function About() {
   return (
     <div className="space-y-16 pb-20 font-sans">
       {/* Page Header Banner */}
-      <section className="bg-[#0b132b] py-20 text-white text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-600/20 via-transparent to-transparent pointer-events-none"></div>
+      <section className="bg-[color:var(--color-navy-dark)] py-20 text-white text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[color:var(--color-primary)]/20 via-transparent to-transparent pointer-events-none"></div>
         <div className="relative z-10 max-w-4xl mx-auto px-6 space-y-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-blue-200 bg-white/10 px-4 py-1.5 rounded-full border border-white/15 inline-block">
-            Corporate Architecture & Capabilities
-          </span>
+            <div className="badge mx-auto">Corporate Architecture & Capabilities</div>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">About PPR Logistics</h1>
           <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-normal leading-relaxed">
             Discover the strategic infrastructure, operational standards, and freight forwarders backing PPR International Transport.
@@ -64,9 +62,9 @@ export default function About() {
             alt="Corporate meeting logistics planning"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0b132b]/85 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--color-navy-dark)]/85 via-transparent to-transparent"></div>
           <div className="absolute bottom-8 left-8 right-8 text-white space-y-2">
-            <span className="text-[11px] uppercase font-bold tracking-widest text-blue-200 bg-white/10 px-3 py-1 rounded-full border border-white/10">
+            <span className="text-[11px] uppercase font-bold tracking-widest text-[color:var(--color-primary)] bg-white/10 px-3 py-1 rounded-full border border-white/10">
               Supply Chain Execution
             </span>
             <h3 className="font-extrabold text-2xl">Logistics Engineered As Strategy</h3>
@@ -86,7 +84,7 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((v, i) => (
               <Reveal key={v.title} variant="fade-up" delay={`${i * 75}ms`}>
-              <div className="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-md card-hover-elevation space-y-3 h-full">
+              <div className="card">
                 <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
                   {v.icon}
                 </div>

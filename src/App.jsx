@@ -33,9 +33,9 @@ export default function App() {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
             <Route path="/routes" element={<RoutesPage />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
             <Route path="/services" element={<ServicesIndex />} />
             <Route path="/services/rail" element={<RailTransport />} />
             <Route path="/services/air" element={<AirTransport />} />

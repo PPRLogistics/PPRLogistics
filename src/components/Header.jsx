@@ -6,15 +6,14 @@ import {
   ChevronDown,
   Phone,
   Mail,
-  Clock,
-  ShieldCheck,
   Truck,
   Train,
   Plane,
   Anchor,
-  ArrowRight
+  ArrowRight,
+  Globe
 } from 'lucide-react';
-import logoImg from '../assets/logo2.png';
+import logoImg from '../assets/logo3.png';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,22 +22,15 @@ export default function Header() {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 30);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsOpen(false);
     setIsServicesOpen(false);
-  }, [location]);
+  }, [location.pathname]);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -46,191 +38,211 @@ export default function Header() {
       name: 'Services',
       path: '/services',
       submenu: [
-        { name: 'International Road Transport', path: '/services/road', icon: <Truck size={18} className="text-primary" />, desc: 'End-to-end road freight across Central Asia & Europe' },
-        { name: 'Rail Transport', path: '/services/rail', icon: <Train size={18} className="text-primary" />, desc: 'Bulk & container wagon shipping corridors' },
-        { name: 'Air Transport', path: '/services/air', icon: <Plane size={18} className="text-primary" />, desc: 'Express time-critical cargo & charters' },
-        { name: 'Ocean Transport', path: '/services/ocean', icon: <Anchor size={18} className="text-primary" />, desc: 'FCL & LCL maritime freight forwarding' },
+        { name: 'Road Freight', path: '/services/road', icon: <Truck size={16} />, desc: 'CMR & TIR certified land transport' },
+        { name: 'Rail Freight', path: '/services/rail', icon: <Train size={16} />, desc: 'Heavy bulk wagon fleets' },
+        { name: 'Air Freight', path: '/services/air', icon: <Plane size={16} />, desc: 'IATA priority flight slots' },
+        { name: 'Ocean Freight', path: '/services/ocean', icon: <Anchor size={16} />, desc: '300+ active port corridors' },
       ],
     },
     { name: 'Routes', path: '/routes' },
-    { name: 'About Us', path: '/about' },
-    { name: 'Contact Us', path: '/contact' },
+    { name: 'Contact', path: '/contact' },
+    { name: 'About', path: '/about' },
   ];
 
   return (
-    <header className="sticky top-0 z-50 transition-all duration-300 font-sans">
-      {/* Top Utility Bar (Enterprise Contact & SLA Info) */}
-      <div className="bg-[#0b132b] text-slate-300 text-xs py-2 px-4 border-b border-slate-800/80 hidden md:block">
-        <div className="max-w-7xl mx-auto flex justify-between items-center gap-4">
+    <header className="sticky top-0 z-50 w-full">
+      {/* ── Top utility bar ── */}
+      <div style={{ backgroundColor: 'var(--color-navy)' }} className="hidden md:block border-b border-white/5">
+        <div className="container-site py-2 flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <span className="inline-flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors">
-              <Phone size={13} className="text-primary-light shrink-0" />
-              <span>+993 65892496</span>
-            </span>
-            <span className="inline-flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors">
-              <Mail size={13} className="text-primary-light shrink-0" />
-              <a href="mailto:info@prplogistic.com">info@prplogistic.com</a>
-            </span>
-            <span className="inline-flex items-center gap-1.5 text-slate-400">
-              <Clock size={13} className="text-slate-400 shrink-0" />
-              <span>24/7 Dispatch Desk</span>
-            </span>
+            <a
+              href="tel:+99365892496"
+              className="flex items-center gap-1.5 text-[var(--color-text-on-dark)] hover:text-white transition-colors text-xs font-medium"
+            >
+              <Phone size={12} style={{ color: 'var(--color-primary)' }} />
+              +993 65892496
+            </a>
+            <a
+              href="mailto:info@prplogistic.com"
+              className="flex items-center gap-1.5 text-[var(--color-text-on-dark)] hover:text-white transition-colors text-xs font-medium"
+            >
+              <Mail size={12} style={{ color: 'var(--color-primary)' }} />
+              info@prplogistic.com
+            </a>
           </div>
-
-          <div className="flex items-center gap-4 text-[11px] text-slate-400">
-            <span className="inline-flex items-center gap-1 bg-primary/20 text-blue-300 px-2.5 py-0.5 rounded-full border border-primary/30 font-medium">
-              <ShieldCheck size={12} className="text-primary-light" />
-              ISO 9001 & SMGS Standardized
+          <div className="flex items-center gap-4 text-slate-500 text-xs">
+            <span className="flex items-center gap-1">
+              <Globe size={11} />
+              Ashgabat &bull; Dubai &bull; Worldwide
             </span>
-            <span className="text-slate-400">Global Corridor Freight</span>
+            <span
+              className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold"
+              style={{
+                background: 'rgba(232,93,4,0.12)',
+                color: 'var(--color-primary-light)',
+                border: '1px solid rgba(232,93,4,0.2)',
+              }}
+            >
+              24/7 Dispatch
+            </span>
           </div>
         </div>
       </div>
 
-      {/* Main Navbar */}
+      {/* ── Main navigation bar ── */}
       <div
-        className={`transition-all duration-300 ease-in-out ${
+        className={`bg-white transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-md py-3 border-b border-slate-200/80'
-            : 'bg-white py-4 border-b border-slate-100'
+            ? 'shadow-[0_2px_20px_rgba(4,16,31,0.10)] border-b border-slate-100/80'
+            : 'border-b border-slate-100'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-6">
-          {/* Logo Container */}
-          <div className="flex items-center shrink-0">
-            <Link to="/" className="flex items-center group focus:outline-none">
-              <img
-                src={logoImg}
-                alt="PPR Logistics Logo"
-                className="h-[42px] sm:h-[46px] lg:h-[50px] w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
-              />
-            </Link>
-          </div>
+        <div className="container-site py-3.5 flex items-center justify-between gap-8">
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8 xl:space-x-10">
+          {/* Logo */}
+          <Link to="/" className="flex items-center shrink-0 group focus:outline-none" aria-label="PPR Logistics">
+            <img
+              src={logoImg}
+              alt="PPR Logistics"
+              className="h-14 sm:h-16 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+            />
+          </Link>
+
+          {/* Desktop nav */}
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => {
               const isActive = link.submenu
                 ? location.pathname.startsWith(link.path)
                 : location.pathname === link.path;
 
-              return (
-                <div key={link.name} className="relative group/nav py-2 flex items-center">
-                  {link.submenu ? (
-                    <div className="relative">
-                      <Link
-                        to={link.path}
-                        className={`flex items-center space-x-1.5 text-sm font-semibold transition-colors duration-200 py-1 ${
-                          isActive
-                            ? 'text-primary font-bold'
-                            : 'text-slate-700 hover:text-primary'
-                        }`}
-                      >
-                        <span>{link.name}</span>
-                        <ChevronDown size={15} className="transition-transform duration-200 group-hover/nav:rotate-180 text-slate-400 group-hover/nav:text-primary" />
-                      </Link>
-
-                      {/* Submenu Dropdown Panel */}
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 p-3 hidden group-hover/nav:block animate-fade-in-up z-50">
-                        <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-3 py-1.5 border-b border-slate-100 mb-1">
-                          Logistics Modes
-                        </div>
-                        {link.submenu.map((sub) => (
-                          <Link
-                            key={sub.name}
-                            to={sub.path}
-                            className={`flex items-start gap-3 p-3 rounded-xl transition-all duration-200 group/sub ${
-                              location.pathname === sub.path
-                                ? 'bg-primary/5 text-primary font-semibold'
-                                : 'hover:bg-slate-50 text-slate-700'
-                            }`}
-                          >
-                            <div className="p-2 rounded-lg bg-slate-100 group-hover/sub:bg-primary/10 group-hover/sub:text-primary transition-colors shrink-0">
-                              {sub.icon}
-                            </div>
-                            <div>
-                              <div className="text-sm font-bold text-slate-900 group-hover/sub:text-primary transition-colors">
-                                {sub.name}
-                              </div>
-                              <div className="text-xs text-slate-500 font-normal leading-tight mt-0.5">
-                                {sub.desc}
-                              </div>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ) : (
+              if (link.submenu) {
+                return (
+                  <div key={link.name} className="relative group/nav">
                     <Link
                       to={link.path}
-                      className={`relative text-sm font-semibold transition-colors duration-200 py-1 ${
+                      className={`flex items-center gap-1 text-sm font-semibold transition-colors duration-150 py-1 ${
                         isActive
-                          ? 'text-primary font-bold after:absolute after:-bottom-2 after:left-0 after:right-0 after:h-[2.5px] after:bg-primary after:rounded-full'
-                          : 'text-slate-700 hover:text-primary'
+                          ? 'text-[color:var(--color-primary)]'
+                          : 'text-slate-600 hover:text-[color:var(--color-charcoal)]'
                       }`}
                     >
                       {link.name}
+                      <ChevronDown
+                        size={14}
+                        className="text-slate-400 transition-transform duration-200 group-hover/nav:rotate-180"
+                      />
                     </Link>
+                    {isActive && (
+                      <span
+                        className="absolute -bottom-3.5 left-0 right-0 h-[2px] rounded-full"
+                        style={{ background: 'var(--color-primary)' }}
+                      />
+                    )}
+
+                    {/* Dropdown */}
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-72 bg-white rounded-2xl shadow-[0_8px_40px_rgba(4,16,31,0.14)] border border-slate-100 p-2.5 hidden group-hover/nav:block z-50">
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 px-3 py-2">
+                        Transport Modes
+                      </p>
+                      {link.submenu.map((sub) => (
+                        <Link
+                          key={sub.name}
+                          to={sub.path}
+                          className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 group/sub ${
+                            location.pathname === sub.path
+                              ? 'bg-[color:var(--color-primary-muted)] text-[color:var(--color-primary)]'
+                              : 'text-slate-700 hover:bg-slate-50 hover:text-[color:var(--color-charcoal)]'
+                          }`}
+                        >
+                          <span
+                            className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                            style={{
+                              background: 'var(--color-primary-muted)',
+                              color: 'var(--color-primary)',
+                            }}
+                          >
+                            {sub.icon}
+                          </span>
+                          <div>
+                            <div className="leading-tight">{sub.name}</div>
+                            <div className="text-xs font-normal text-slate-400 mt-0.5">{sub.desc}</div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+
+              return (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={`relative text-sm font-semibold transition-colors duration-150 py-1 ${
+                    isActive
+                      ? 'text-[color:var(--color-primary)]'
+                      : 'text-slate-600 hover:text-[color:var(--color-charcoal)]'
+                  }`}
+                >
+                  {link.name}
+                  {isActive && (
+                    <span
+                      className="absolute -bottom-3.5 left-0 right-0 h-[2px] rounded-full"
+                      style={{ background: 'var(--color-primary)' }}
+                    />
                   )}
-                </div>
+                </Link>
               );
             })}
           </nav>
 
-          {/* Action CTA Button */}
-          <div className="hidden lg:flex items-center shrink-0">
-            <Link
-              to="/contact"
-              className="bg-primary hover:bg-primary-dark text-white font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl shadow-sm hover:shadow-md hover:shadow-primary/20 transition-all duration-200 flex items-center gap-2 group active:scale-95"
-            >
-              Order Transport
-              <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+          {/* CTA Button */}
+          <div className="hidden lg:flex items-center">
+            <Link to="/contact" className="btn btn-primary text-xs font-bold tracking-wide uppercase">
+              Request a Quote
+              <ArrowRight size={14} />
             </Link>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <div className="lg:hidden flex items-center">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2.5 rounded-xl bg-slate-100 text-slate-800 hover:text-primary hover:bg-slate-200 focus:outline-none transition-colors"
-              aria-label="Toggle navigation menu"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          {/* Mobile toggle */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden p-2 rounded-lg transition-colors text-slate-700 hover:bg-slate-100 focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
+      {/* ── Mobile drawer ── */}
       {isOpen && (
-        <div className="lg:hidden bg-white border-b border-slate-200 shadow-2xl py-5 px-6 animate-fade-in-up">
-          <nav className="flex flex-col space-y-4">
+        <div style={{ backgroundColor: 'var(--color-navy)' }} className="lg:hidden border-b border-white/5 shadow-2xl">
+          <div className="container-site py-6 flex flex-col gap-1">
             {navLinks.map((link) => (
               <div key={link.name}>
                 {link.submenu ? (
                   <div>
                     <button
                       onClick={() => setIsServicesOpen(!isServicesOpen)}
-                      className="flex justify-between items-center w-full font-bold text-slate-800 py-2.5 border-b border-slate-100 text-base"
+                      className="flex justify-between items-center w-full text-white font-semibold py-3 border-b border-white/6 text-sm"
                     >
-                      <span>{link.name}</span>
+                      {link.name}
                       <ChevronDown
-                        size={18}
-                        className={`transition-transform duration-200 ${
-                          isServicesOpen ? 'rotate-180 text-primary' : 'text-slate-400'
-                        }`}
+                        size={16}
+                        className={`transition-transform ${isServicesOpen ? 'rotate-180 text-[color:var(--color-primary)]' : 'text-slate-400'}`}
                       />
                     </button>
                     {isServicesOpen && (
-                      <div className="pl-4 mt-2 space-y-2 border-l-2 border-primary/40 ml-1 py-1">
+                      <div className="pl-4 py-2 space-y-1 border-l-2 ml-1 mt-1" style={{ borderColor: 'var(--color-primary)' }}>
                         {link.submenu.map((sub) => (
                           <Link
                             key={sub.name}
                             to={sub.path}
-                            className="flex items-center gap-2 py-2 text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+                            className="flex items-center gap-2 py-2 text-sm text-slate-300 hover:text-white font-medium transition-colors"
                           >
-                            {sub.icon}
-                            <span>{sub.name}</span>
+                            <span style={{ color: 'var(--color-primary)' }}>{sub.icon}</span>
+                            {sub.name}
                           </Link>
                         ))}
                       </div>
@@ -239,10 +251,10 @@ export default function Header() {
                 ) : (
                   <Link
                     to={link.path}
-                    className={`block font-bold text-base py-2.5 border-b border-slate-100 ${
+                    className={`block py-3 border-b border-white/6 text-sm font-semibold transition-colors ${
                       location.pathname === link.path
-                        ? 'text-primary'
-                        : 'text-slate-800 hover:text-primary'
+                        ? 'text-[color:var(--color-primary)]'
+                        : 'text-white hover:text-[color:var(--color-primary-light)]'
                     }`}
                   >
                     {link.name}
@@ -250,21 +262,17 @@ export default function Header() {
                 )}
               </div>
             ))}
-            <div className="pt-4 flex flex-col space-y-4">
-              <Link
-                to="/contact"
-                className="bg-primary hover:bg-primary-dark text-white text-center font-bold py-3.5 rounded-xl shadow-md text-sm uppercase tracking-wider transition-colors flex items-center justify-center gap-2"
-              >
-                Order Transport
-                <ArrowRight size={16} />
+            <div className="pt-4 space-y-3">
+              <Link to="/contact" className="btn btn-primary w-full justify-center text-xs uppercase tracking-wide">
+                Request a Quote
+                <ArrowRight size={14} />
               </Link>
-              <div className="text-center text-xs text-slate-500 space-y-1 pt-2 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                <p className="font-semibold text-slate-700">24/7 Logistics Desk</p>
-                <p>Phone: +993 65892496</p>
-                <p>Email: info@prplogistic.com</p>
+              <div className="text-center pt-2 space-y-1">
+                <p className="text-xs text-slate-400">24/7 Dispatch: <span className="text-white font-medium">+993 65892496</span></p>
+                <p className="text-xs text-slate-400">info@prplogistic.com</p>
               </div>
             </div>
-          </nav>
+          </div>
         </div>
       )}
     </header>

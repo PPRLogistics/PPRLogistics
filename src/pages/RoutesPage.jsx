@@ -12,10 +12,10 @@ export default function RoutesPage() {
   return (
     <div className="space-y-16 pb-20 font-sans">
       {/* Page Header Banner */}
-      <section className="bg-[#0b132b] py-20 text-white text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-600/20 via-transparent to-transparent pointer-events-none"></div>
+      <section className="bg-[color:var(--color-navy-dark)] py-20 text-white text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[color:var(--color-primary)]/20 via-transparent to-transparent pointer-events-none"></div>
         <div className="relative z-10 max-w-4xl mx-auto px-6 space-y-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-blue-200 bg-white/10 px-4 py-1.5 rounded-full border border-white/15 inline-block">
+          <span className="text-xs font-bold uppercase tracking-widest text-[color:var(--color-primary)] bg-white/10 px-4 py-1.5 rounded-full border border-white/15 inline-block">
             Global Trade Architecture
           </span>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Active Trade Corridors & Routes</h1>
@@ -72,7 +72,7 @@ export default function RoutesPage() {
 
         {/* Visual Map/Video representation */}
         <div className="space-y-6">
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-video bg-[#0b132b] flex items-center justify-center border border-slate-200">
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-video bg-[color:var(--color-navy-dark)] flex items-center justify-center border border-slate-200">
             <video
               autoPlay
               loop
@@ -114,17 +114,14 @@ export default function RoutesPage() {
 
       {/* CTA Box */}
       <section className="max-w-4xl mx-auto px-6">
-        <div className="bg-[#0b132b] text-white rounded-3xl p-10 text-center space-y-5 shadow-2xl relative overflow-hidden border border-slate-800">
+        <div className="bg-[color:var(--color-navy-dark)] text-white rounded-3xl p-10 text-center space-y-5 shadow-2xl relative overflow-hidden border border-slate-800">
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">Ready to Schedule a Route Transit?</h2>
           <p className="text-slate-300 text-xs sm:text-sm max-w-lg mx-auto leading-relaxed">
             Contact our route coordinators for specific shipping rates, border crossing schedules, and custom clearance support.
           </p>
           <div className="pt-2">
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl text-xs uppercase tracking-wider shadow-lg hover:shadow-primary/30 transition-all cursor-pointer group"
-            >
+            <Link to="/contact" className="btn-primary inline-flex items-center gap-2 px-8 py-4">
               Get Custom Route Quote
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>

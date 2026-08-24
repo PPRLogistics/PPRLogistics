@@ -1,102 +1,121 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Clock, Award, CheckCircle, ArrowRight, Anchor, Train, Plane, Truck, MapPin } from 'lucide-react';
+import {
+  Shield, Clock, ArrowRight,
+  Anchor, Train, Plane, Truck, MapPin,
+  Globe, ChevronRight, TrendingUp, Layers,
+} from 'lucide-react';
 import BlogSlider from '../components/BlogSlider';
 import Reveal from '../components/Reveal';
 import heroTruckImg from '../assets/hero-truck.png';
 import pprHeroVideo from '../assets/PPR_Video.mp4';
 
+/* ─────────────────────────────────── DATA ─────────────────────────────── */
+
+const stats = [
+  { value: '50+', label: 'Global Routes' },
+  { value: '24/7', label: 'Dispatch Support' },
+  { value: '4', label: 'Transport Modes' },
+  { value: '100%', label: 'Cargo Coverage' },
+];
+
+const services = [
+  {
+    id: 'road',
+    icon: <Truck size={22} />,
+    label: 'Road Freight',
+    title: 'International Road Freight',
+    caption: 'Door-to-door across Central Asia, Middle East & Europe.',
+    body: 'High-capacity tilt trailers, reefers, and heavy-haul low-beds operating under CMR and TIR conventions. Direct border clearance, real-time GPS tracking, and temperature compliance — from Ashgabat to anywhere in Europe or the Middle East.',
+    metrics: ['CMR & TIR Certified', 'Temperature Controlled', 'Door-to-Door'],
+    link: '/services/road',
+    image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=1200',
+  },
+  {
+    id: 'rail',
+    icon: <Train size={22} />,
+    label: 'Rail Freight',
+    title: 'Rail & Wagon Transport',
+    caption: 'Economical bulk haulage along major Eurasian rail corridors.',
+    body: 'Covered wagons, container flatbeds, liquid tanks, and reefer rail cars connecting Central Asia, China, Russia, and Europe. SMGS-standardised operations with direct intermodal hub transfers and significantly lower carbon footprint per ton-km.',
+    metrics: ['SMGS Standardised', 'China–Europe Rail', 'Bulk Wagon Fleet'],
+    link: '/services/rail',
+    image: 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&q=80&w=1200',
+  },
+  {
+    id: 'air',
+    icon: <Plane size={22} />,
+    label: 'Air Freight',
+    title: 'Express Air Cargo',
+    caption: 'Priority flight slots for time-critical shipments worldwide.',
+    body: 'Airport-to-airport express cargo and dedicated charter services for pharmaceuticals, perishables, and high-value electronics. SLA-guaranteed flight booking, priority customs at airport terminals, and cold-chain temperature control.',
+    metrics: ['IATA Priority', 'Cold-Chain Certified', 'Charter Flights'],
+    link: '/services/air',
+    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=1200',
+  },
+  {
+    id: 'ocean',
+    icon: <Anchor size={22} />,
+    label: 'Ocean Freight',
+    title: 'Maritime Ocean Freight',
+    caption: 'FCL & LCL container forwarding across 520 global ports.',
+    body: 'Full Container Load and Less than Container Load maritime forwarding across 155 countries. Strategic carrier capacity contracts, portside customs handling, container optimisation, bill of lading management, and seamless intermodal transfer.',
+    metrics: ['520+ Ports', 'FCL & LCL', 'Portside Customs'],
+    link: '/services/ocean',
+    image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&q=80&w=1200',
+  },
+];
+
+const whyPPR = [
+  {
+    icon: <Shield size={20} />,
+    title: 'End-to-End Accountability',
+    body: 'Single point of contact from pickup to final-mile delivery. Every shipment covered by comprehensive cargo insurance and real-time tracking.',
+  },
+  {
+    icon: <Globe size={20} />,
+    title: 'Deep Corridor Expertise',
+    body: 'Years of operational experience across Central Asia, Caucasus, Middle East, Russia, and Europe — including complex border crossing procedures.',
+  },
+  {
+    icon: <Clock size={20} />,
+    title: '24/7 Dispatch Operations',
+    body: 'Round-the-clock logistics coordination and dedicated freight managers ensure no shipment is ever left unattended.',
+  },
+  {
+    icon: <TrendingUp size={20} />,
+    title: 'SLA-Driven Performance',
+    body: 'Committed service level agreements with route-optimised planning to eliminate unnecessary transit delays and cost overruns.',
+  },
+  {
+    icon: <Layers size={20} />,
+    title: 'Multimodal Flexibility',
+    body: 'Road, rail, air, and ocean — combined intelligently to create the most efficient end-to-end supply chain for your cargo profile.',
+  },
+];
+
+const corridors = [
+  { from: 'Ashgabat', to: 'Dubai', modes: ['Road', 'Air'], type: 'Primary', desc: 'Central Asia hub to Sea & Air forwarding centre.' },
+  { from: 'Ashgabat', to: 'Moscow', modes: ['Rail', 'Road'], type: 'Primary', desc: 'Rail wagon and road freight corridor to Russia.' },
+  { from: 'Central Asia', to: 'Europe', modes: ['Rail', 'Ocean'], type: 'Secondary', desc: 'Via Iran & Turkey into European market hubs.' },
+  { from: 'Dubai', to: 'South Asia', modes: ['Ocean', 'Air'], type: 'Secondary', desc: 'FCL/LCL and express air to South Asian markets.' },
+  { from: 'China', to: 'Ashgabat', modes: ['Rail'], type: 'Secondary', desc: 'SMGS-standardised China–Europe rail corridor transit.' },
+];
+
+/* ─────────────────────────────── COMPONENT ─────────────────────────────── */
+
 export default function Home() {
-  const features = [
-    {
-      icon: <Clock size={28} className="text-primary" />,
-      title: '24/7 Dispatch Control',
-      desc: 'Round-the-clock logistical coordination, continuous tracking, and dedicated freight managers for every shipment.',
-    },
-    {
-      icon: <Shield size={28} className="text-primary" />,
-      title: 'Cargo Security & Insurance',
-      desc: 'Comprehensive cargo insurance, SMGS/CMR standardization, and strict safety protocols across all transit routes.',
-    },
-    {
-      icon: <Award size={28} className="text-primary" />,
-      title: 'Certified Customs Compliance',
-      desc: 'Fully licensed international freight forwarder with direct border clearance capabilities across major trade hubs.',
-    },
-    {
-      icon: <CheckCircle size={28} className="text-primary" />,
-      title: 'SLA-Backed On-Time Delivery',
-      desc: 'Punctual schedule execution with optimized route planning to eliminate unnecessary transit delays.',
-    },
-  ];
-
-  const services = [
-    {
-      id: 'road',
-      title: 'International Road Freight',
-      category: 'Land Fleet & Cross-Border Dispatch',
-      badge: 'CMR & TIR Carnet Certified',
-      icon: <Truck size={24} className="text-blue-400" />,
-      whatItIs: 'High-capacity door-to-door tilt trailers, reefers, and heavy-haul low-beds operating across Central Asia, Caucasus, Middle East, Turkey, Russia & Europe.',
-      targetCustomer: 'Agricultural exporters, pharmaceutical manufacturers, heavy machinery suppliers, and retail distributors requiring direct door delivery.',
-      pprValue: 'Direct border clearance assistance, daily GPS telematics tracking, refrigerated temperature compliance, and SLA route dispatch.',
-      metrics: ['Door-to-Door Delivery', 'Temperature Controlled', 'TIR Border Transit'],
-      link: '/services/road',
-      image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=800',
-    },
-    {
-      id: 'rail',
-      title: 'International Rail & Wagon Freight',
-      category: 'Heavy Bulk & Wagon Fleets',
-      badge: 'SMGS Convention Standardized',
-      icon: <Train size={22} className="text-blue-400" />,
-      whatItIs: 'Heavy-duty wagon fleets, covered hoppers, container flatbeds, and reefer rail cars connecting Central Asia, China, Russia, Turkey, and Europe.',
-      targetCustomer: 'Bulk commodity traders, steel and mineral exporters, chemical industries, and automotive suppliers requiring high-volume economical transit.',
-      pprValue: 'Direct wagon fleet allocation, intermodal rail-to-sea & rail-to-road hub transfers, SMGS border clearance, and lower carbon footprint per ton-km.',
-      metrics: ['Bulk Wagon Fleets', 'China-Europe Rail Corridor', 'SMGS Certified'],
-      link: '/services/rail',
-      image: 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&q=80&w=600',
-    },
-    {
-      id: 'air',
-      title: 'Express Air Freight Solutions',
-      category: 'Time-Critical Aviation Freight',
-      badge: 'IATA Priority Flight Slots',
-      icon: <Plane size={22} className="text-blue-400" />,
-      whatItIs: 'Priority air cargo, airport-to-airport express flights, and dedicated charter flights for ultra time-sensitive and high-value shipments.',
-      targetCustomer: 'Pharmaceutical companies, emergency spare parts distributors, perishables, and high-value electronics manufacturers needing rapid arrival.',
-      pprValue: 'SLA-guaranteed express flight booking, priority customs handling at airport terminals, cold-chain temperature control, and 24/7 flight tracking.',
-      metrics: ['Express Charters', 'Cold-Chain Certified', 'Airport Priority'],
-      link: '/services/air',
-      image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=600',
-    },
-    {
-      id: 'ocean',
-      title: 'Maritime Ocean Container Freight',
-      category: 'Global Container Forwarding',
-      badge: '300+ Active Port Corridors',
-      icon: <Anchor size={22} className="text-blue-400" />,
-      whatItIs: 'Full Container Load (FCL) and Less than Container Load (LCL) maritime freight forwarding across 520 global ports in 155 countries.',
-      targetCustomer: 'Global import/export enterprises, FMCG distributors, manufacturing OEMs, and raw material suppliers trading across major sea lanes.',
-      pprValue: 'Strategic carrier capacity contracts, portside handling, container optimization, bill of lading management, and seamless intermodal transfer.',
-      metrics: ['FCL & LCL Consolidation', '520+ Global Ports', 'Portside Customs'],
-      link: '/services/ocean',
-      image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&q=80&w=600',
-    },
-  ];
-
-  const stats = [
-    { value: '50+', label: 'Active Trade Corridors' },
-    { value: '99.4%', label: 'SLA Delivery Precision' },
-    { value: '24/7', label: 'Global Dispatch Desk' },
-    { value: '100%', label: 'Insured Freight Transit' },
-  ];
-
   return (
-    <div className="space-y-24 pb-20 font-sans">
-      {/* Hero Section */}
-      <section className="relative h-[90vh] min-h-[660px] max-h-[900px] flex items-center overflow-hidden bg-[#0b132b]">
-        {/* Background Hero Video - READ-ONLY UNTOUCHED IMPLEMENTATION */}
+    <div className="font-sans overflow-x-hidden" style={{ background: 'var(--color-bg)' }}>
+
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* HERO — video locked, overlay & typography redesigned              */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <section
+        className="relative flex items-center overflow-hidden"
+        style={{ minHeight: '92vh', background: 'var(--color-navy)' }}
+      >
+        {/* ── Background Hero Video (PPR_Video.mp4) ── */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <video
             autoPlay
@@ -104,85 +123,134 @@ export default function Home() {
             muted
             playsInline
             poster={heroTruckImg}
-            style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+            className="w-full h-full object-cover object-center"
           >
             <source src={pprHeroVideo} type="video/mp4" />
           </video>
-          {/* Sophisticated multi-layered read-only background overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b132b] via-[#0b132b]/80 to-[#0b132b]/35 pointer-events-none z-[1]"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0b132b] via-transparent to-[#0b132b]/40 pointer-events-none z-[1]"></div>
+
+          {/* Dynamic Lens Flare & Sunset Atmospheric Glow */}
+          <div
+            className="absolute top-1/3 left-1/12 w-96 h-96 rounded-full pointer-events-none animate-sun-glow"
+            style={{
+              background: 'radial-gradient(circle, rgba(244,91,10,0.45) 0%, rgba(232,93,4,0.15) 40%, transparent 70%)',
+              filter: 'blur(30px)',
+            }}
+          />
+
+          {/* Highway Motion Speed Line Streaks */}
+          <div
+            className="absolute bottom-12 left-0 right-0 h-16 pointer-events-none animate-road-streak opacity-30"
+            style={{
+              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), rgba(244,91,10,0.6), transparent)',
+              filter: 'blur(2px)',
+            }}
+          />
+
+          {/* Gradient overlays for contrast and text legibility */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(100deg, rgba(4,16,31,0.92) 0%, rgba(4,16,31,0.78) 45%, rgba(4,16,31,0.35) 100%)',
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(to top, rgba(4,16,31,0.90) 0%, transparent 65%)',
+            }}
+          />
         </div>
 
-        {/* Hero Left Content Container */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 md:px-12 w-full py-12">
-          <div className="max-w-[620px] text-left space-y-6 text-white animate-fade-in-up">
-            
-            {/* Category / Context Badge */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-xl border border-white/15 shadow-sm text-slate-200">
-              <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-              </span>
-              <span className="text-slate-300 font-bold uppercase tracking-wider text-[11px]">
-                Global Transportation & Logistics
+        {/* ── Hero content ── */}
+        <div className="relative z-10 container-site w-full py-24 md:py-32">
+          <div className="max-w-2xl animate-fade-in-up">
+            {/* Eyebrow */}
+            <div className="flex items-center gap-2 mb-6">
+              <span
+                className="h-[2px] w-8 rounded-full inline-block"
+                style={{ background: 'var(--color-primary)' }}
+              />
+              <span
+                className="text-xs font-bold uppercase tracking-widest"
+                style={{ color: 'var(--color-primary-light)' }}
+              >
+                Global Transportation &amp; Logistics
               </span>
             </div>
 
-            {/* Headline Hierarchy: Company -> Category -> Core Promise */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
-              PPR Logistics
-              <span className="block text-2xl sm:text-3xl lg:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-100 tracking-normal mt-2 leading-tight">
-                Reliable International Freight Solutions
-              </span>
+            {/* Headline */}
+            <h1
+              className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 leading-tight tracking-tight"
+              style={{
+                fontFamily: 'var(--font-heading)',
+              }}
+            >
+
+              <span style={{ color: 'var(--color-primary)' }}>Freight Solutions</span>
+              <br />
+              <span style={{ color: 'var(--color-primary)' }}>Built for Enterprise.</span>
             </h1>
 
-            {/* Subtle Transport Modes Layer */}
-            <div className="flex flex-wrap items-center gap-2.5 text-xs font-semibold text-slate-300 pt-1">
-              <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1 rounded-lg border border-white/15 text-white shadow-sm">
-                <Truck size={13} className="text-blue-300 shrink-0" /> Road
-              </span>
-              <span className="text-slate-500 font-bold">•</span>
-              <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1 rounded-lg border border-white/15 text-white shadow-sm">
-                <Train size={13} className="text-blue-300 shrink-0" /> Rail
-              </span>
-              <span className="text-slate-500 font-bold">•</span>
-              <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1 rounded-lg border border-white/15 text-white shadow-sm">
-                <Plane size={13} className="text-blue-300 shrink-0" /> Air
-              </span>
-              <span className="text-slate-500 font-bold">•</span>
-              <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1 rounded-lg border border-white/15 text-white shadow-sm">
-                <Anchor size={13} className="text-blue-300 shrink-0" /> Ocean
-              </span>
-            </div>
-
-            {/* Supporting Paragraph */}
-            <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-[580px]">
-              Connecting cross-border supply chains with SLA-backed freight forwarding, custom clearance, and real-time cargo monitoring across Central Asia, Dubai, Europe, and Asia.
+            {/* Sub-headline */}
+            <p className="text-lg text-[var(--color-text-on-dark)] max-w-2xl mb-8 leading-relaxed font-normal">
+              SLA-backed road, rail, air &amp; ocean freight forwarding across Central Asia,
+              the Middle East, Russia, and Europe — with 24/7 dispatch and full cargo insurance.
             </p>
 
-            {/* CTA Hierarchy: Primary Dominant vs Secondary Subordinate */}
-            <div className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-              <Link
-                to="/contact"
-                className="px-8 py-4 bg-primary hover:bg-primary-dark text-white font-extrabold rounded-xl shadow-xl shadow-primary/30 hover:-translate-y-0.5 transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 group active:scale-95 cursor-pointer ring-2 ring-primary/50"
-              >
-                Request a Quote
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link
-                to="/services"
-                className="px-7 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl border border-white/25 backdrop-blur-md hover:-translate-y-0.5 transition-all text-xs uppercase tracking-wider flex items-center justify-center cursor-pointer hover:border-white/40"
-              >
-                Explore Our Services
-              </Link>
+            {/* Mode pills */}
+            <div className="flex flex-wrap gap-2 mb-9">
+              {[
+                { icon: <Truck size={13} />, label: 'Road' },
+                { icon: <Train size={13} />, label: 'Rail' },
+                { icon: <Plane size={13} />, label: 'Air' },
+                { icon: <Anchor size={13} />, label: 'Ocean' },
+              ].map(({ icon, label }) => (
+                <span
+                  key={label}
+                  className="inline-flex items-center gap-1.5 text-white text-xs font-semibold px-3.5 py-1.5 rounded-full"
+                  style={{
+                    background: 'rgba(255,255,255,0.08)',
+                    border: '1px solid rgba(255,255,255,0.14)',
+                    backdropFilter: 'blur(8px)',
+                  }}
+                >
+                  <span style={{ color: 'var(--color-primary)' }}>{icon}</span>
+                  {label}
+                </span>
+              ))}
             </div>
 
-            {/* Metrics Ticker Bar */}
-            <div className="pt-6 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {stats.map((stat, i) => (
-                <div key={i} className="space-y-0.5">
-                  <div className="text-xl sm:text-2xl font-extrabold text-white">{stat.value}</div>
-                  <div className="text-[11px] text-slate-300 font-medium uppercase tracking-wider">{stat.label}</div>
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link to="/contact" className="btn btn-primary">
+                Request a Quote
+                <ArrowRight size={15} />
+              </Link>
+              <Link to="/services" className="btn btn-secondary">
+                Our Services
+              </Link>
+            </div>
+          </div>
+
+          {/* ── Stats bar pinned to bottom ── */}
+          <div
+            className="absolute bottom-0 left-0 right-0 border-t"
+            style={{ borderColor: 'rgba(255,255,255,0.08)' }}
+          >
+            <div className="container-site py-5 grid grid-cols-2 sm:grid-cols-4 gap-6">
+              {stats.map((s) => (
+                <div key={s.label}>
+                  <div
+                    className="text-2xl font-black"
+                    style={{ color: 'var(--color-primary)', fontFamily: 'var(--font-heading)' }}
+                  >
+                    {s.value}
+                  </div>
+                  <div className="text-[var(--color-text-on-dark)] text-xs font-semibold uppercase tracking-wide mt-0.5">
+                    {s.label}
+                  </div>
                 </div>
               ))}
             </div>
@@ -190,588 +258,571 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Core Values Section */}
-      <section className="max-w-7xl mx-auto px-6">
-        <Reveal variant="fade-up">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span className="text-primary font-bold text-xs uppercase tracking-widest bg-primary/5 px-3 py-1 rounded-full border border-primary/10 inline-block">
-              Why Choose PPR Logistics
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-              Safety, Punctuality & Global Cargo Protection
-            </h2>
-            <p className="text-slate-600 text-sm md:text-base leading-relaxed">
-              By integrating multimodal fleets and deep corridor expertise, PPR delivers high-efficiency logistics solutions across international trade routes.
-            </p>
-          </div>
-        </Reveal>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {features.map((feat, i) => (
-            <Reveal key={feat.title} variant="fade-up" delay={`${i * 70}ms`}>
-              <div className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-md card-hover-elevation space-y-4 h-full">
-                <div className="w-14 h-14 bg-primary/10 text-primary rounded-2xl flex items-center justify-center">
-                  {feat.icon}
-                </div>
-                <h3 className="font-extrabold text-lg text-slate-900">{feat.title}</h3>
-                <p className="text-slate-600 text-xs leading-relaxed">{feat.desc}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* Services List Section - Modern Editorial Capabilities */}
-      <section className="bg-[#0b132b] text-white py-24 relative overflow-hidden">
-        {/* Ambient background glows */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-primary/15 blur-[160px] pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[160px] pointer-events-none"></div>
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10 space-y-16">
-          {/* Header */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* SERVICES — Alternating image + text (not cards)                   */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 md:py-32" style={{ background: '#fff' }}>
+        <div className="container-site">
+          {/* Section header */}
           <Reveal variant="fade-up">
-            <div className="text-center max-w-3xl mx-auto space-y-3">
-              <span className="text-blue-300 font-bold text-xs uppercase tracking-widest bg-white/10 px-4 py-1.5 rounded-full border border-white/15 inline-block shadow-sm">
-                Enterprise Transportation Capabilities
-              </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-                Multimodal Logistics Engineered for Enterprise Supply Chains
+            <div className="mb-16 max-w-xl">
+              <span className="eyebrow-tag mb-3 inline-block">Transport Capabilities</span>
+              <h2
+                style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)',
+                  fontWeight: 900,
+                  color: 'var(--color-charcoal)',
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.015em',
+                }}
+              >
+                Multimodal Freight,
+                <br />
+                Engineered for Enterprise.
               </h2>
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
-                High-capacity freight forwarding modes structured around your exact cargo requirements, industry standards, and global SLA commitments.
-              </p>
             </div>
           </Reveal>
 
-          {/* Editorial Card Layout */}
-          <div className="space-y-8">
-            {/* 1. Featured Service Card: International Road Freight (Hero Split Card) */}
-            {services.filter(s => s.id === 'road').map((ser) => (
-              <Reveal key={ser.id} variant="fade-up" delay="80ms">
-              <div
-                className="bg-[#0f172a] border border-slate-800 rounded-3xl overflow-hidden hover:border-primary-light/60 transition-all duration-500 group shadow-2xl card-hover-elevation grid grid-cols-1 lg:grid-cols-12"
-              >
-                {/* Image side (5 cols) */}
-                <div className="lg:col-span-5 relative overflow-hidden min-h-[300px] lg:min-h-[460px]">
-                  <img
-                    src={ser.image}
-                    alt={ser.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#0f172a] opacity-90"></div>
-                  <div className="absolute top-5 left-5 bg-slate-950/85 backdrop-blur-md text-blue-300 text-[11px] font-extrabold uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-white/15 shadow-md flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary-light"></span>
-                    {ser.badge}
-                  </div>
-                </div>
-
-                {/* Content side (7 cols) */}
-                <div className="lg:col-span-7 p-7 sm:p-10 flex flex-col justify-between space-y-6">
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-2xl bg-primary/20 text-primary-light flex items-center justify-center shrink-0 border border-primary/30 shadow-md">
-                        {ser.icon}
-                      </div>
-                      <div>
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">{ser.category}</span>
-                        <h3 className="text-2xl sm:text-3xl font-extrabold text-white group-hover:text-blue-200 transition-colors">{ser.title}</h3>
-                      </div>
-                    </div>
-
-                    {/* 3 Explicit Communication Elements */}
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-xs">
-                      <div className="bg-slate-900/90 p-4 rounded-2xl border border-slate-800 space-y-1">
-                        <span className="text-blue-300 font-extrabold uppercase tracking-wider text-[10px] block">What It Is</span>
-                        <p className="text-slate-300 leading-relaxed font-normal">{ser.whatItIs}</p>
-                      </div>
-                      <div className="bg-slate-900/90 p-4 rounded-2xl border border-slate-800 space-y-1">
-                        <span className="text-blue-300 font-extrabold uppercase tracking-wider text-[10px] block">Target Customer</span>
-                        <p className="text-slate-300 leading-relaxed font-normal">{ser.targetCustomer}</p>
-                      </div>
-                      <div className="bg-slate-900/90 p-4 rounded-2xl border border-slate-800 space-y-1">
-                        <span className="text-blue-300 font-extrabold uppercase tracking-wider text-[10px] block">Why PPR</span>
-                        <p className="text-slate-300 leading-relaxed font-normal">{ser.pprValue}</p>
-                      </div>
-                    </div>
-
-                    {/* Metric Pills */}
-                    <div className="flex flex-wrap gap-2 pt-1">
-                      {ser.metrics.map((m) => (
-                        <span key={m} className="text-[11px] font-bold text-slate-300 bg-slate-800/80 px-3 py-1 rounded-lg border border-slate-700">
-                          ✓ {m}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
-                    <Link
-                      to={ser.link}
-                      className="text-primary-light font-extrabold text-xs uppercase tracking-wider hover:text-white flex items-center gap-2 transition-colors group/link cursor-pointer"
-                    >
-                      Explore Road Transport Capabilities
-                      <ArrowRight size={16} className="transition-transform group-hover/link:translate-x-1.5" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              </Reveal>
-            ))}
-
-            {/* 3 Grid Cards: Rail, Air, Ocean (Asymmetric & Non-Identical Styling) */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {services.filter(s => s.id !== 'road').map((ser, index) => {
-                // Distinct visual styling per card to prevent identical appearance
-                const styleVariants = [
-                  'bg-slate-900/90 border-slate-800 hover:border-blue-500/50', // Rail: Slate
-                  'bg-slate-950/90 border-slate-800/80 hover:border-primary-light/60 backdrop-blur-xl', // Air: Glass
-                  'bg-[#0c1a3a] border-slate-800 hover:border-blue-400/60', // Ocean: Marine
-                ];
-
-                return (
-                  <Reveal key={ser.id} variant="scale-in" delay={`${index * 100}ms`}>
+          {/* Alternating rows */}
+          <div className="space-y-24">
+            {services.map((svc, i) => {
+              const isEven = i % 2 === 0;
+              return (
+                <Reveal key={svc.id} variant="fade-up" delay={`${i * 60}ms`}>
                   <div
-                    className={`rounded-3xl overflow-hidden border transition-all duration-500 group flex flex-col justify-between h-full card-hover-elevation p-6 sm:p-8 space-y-6 ${styleVariants[index % 3]}`}
+                    className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center ${isEven ? '' : 'lg:[direction:rtl]'
+                      }`}
                   >
-                    <div className="space-y-5">
-                      {/* Image header thumbnail */}
-                      <div className="h-44 rounded-2xl overflow-hidden relative shadow-md">
-                        <img
-                          src={ser.image}
-                          alt={ser.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0b132b] via-transparent to-transparent opacity-85"></div>
-                        <div className="absolute top-3 left-3 bg-slate-950/85 backdrop-blur-md text-blue-300 text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full border border-white/10">
-                          {ser.badge}
-                        </div>
+                    {/* Image */}
+                    <div
+                      className="relative rounded-2xl overflow-hidden img-zoom"
+                      style={{
+                        aspectRatio: '16/10',
+                        boxShadow: 'var(--shadow-raised)',
+                        direction: 'ltr',
+                      }}
+                    >
+                      <img
+                        src={svc.image}
+                        alt={svc.title}
+                        className="w-full h-full object-cover"
+                      />
+                      {/* Dark overlay at bottom */}
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background:
+                            'linear-gradient(to top, rgba(4,16,31,0.65) 0%, transparent 55%)',
+                        }}
+                      />
+                      {/* Mode badge */}
+                      <div
+                        className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold"
+                        style={{
+                          background: 'rgba(4,16,31,0.75)',
+                          backdropFilter: 'blur(8px)',
+                          border: '1px solid rgba(255,255,255,0.12)',
+                          color: 'var(--color-primary-light)',
+                        }}
+                      >
+                        <span style={{ color: 'var(--color-primary)' }}>{svc.icon}</span>
+                        {svc.label}
                       </div>
-
-                      {/* Header */}
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-primary/20 text-primary-light flex items-center justify-center shrink-0 border border-primary/30">
-                          {ser.icon}
-                        </div>
-                        <div>
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">{ser.category}</span>
-                          <h3 className="font-extrabold text-xl text-white group-hover:text-blue-200 transition-colors">{ser.title}</h3>
-                        </div>
-                      </div>
-
-                      {/* 3 Explicit Communication Blocks */}
-                      <div className="space-y-3 text-xs border-t border-slate-800/80 pt-4">
-                        <div>
-                          <span className="text-blue-300 font-extrabold uppercase tracking-wider text-[10px] block mb-0.5">Capability</span>
-                          <p className="text-slate-300 leading-relaxed font-normal">{ser.whatItIs}</p>
-                        </div>
-                        <div>
-                          <span className="text-blue-300 font-extrabold uppercase tracking-wider text-[10px] block mb-0.5">Primary Clients</span>
-                          <p className="text-slate-300 leading-relaxed font-normal">{ser.targetCustomer}</p>
-                        </div>
-                        <div>
-                          <span className="text-blue-300 font-extrabold uppercase tracking-wider text-[10px] block mb-0.5">PPR Advantage</span>
-                          <p className="text-slate-300 leading-relaxed font-normal">{ser.pprValue}</p>
-                        </div>
-                      </div>
-
-                      {/* Metric Tag Pills */}
-                      <div className="flex flex-wrap gap-1.5 pt-1">
-                        {ser.metrics.map((m) => (
-                          <span key={m} className="text-[10px] font-semibold text-slate-300 bg-slate-800/60 px-2.5 py-0.5 rounded-md border border-slate-700/80">
+                      {/* Metric pills at bottom */}
+                      <div className="absolute bottom-4 left-4 flex flex-wrap gap-1.5">
+                        {svc.metrics.map((m) => (
+                          <span
+                            key={m}
+                            className="text-white text-[10px] font-semibold px-2.5 py-0.5 rounded-md"
+                            style={{
+                              background: 'rgba(255,255,255,0.10)',
+                              border: '1px solid rgba(255,255,255,0.12)',
+                            }}
+                          >
                             {m}
                           </span>
                         ))}
                       </div>
                     </div>
 
-                    <div className="pt-4 border-t border-slate-800/80">
-                      <Link
-                        to={ser.link}
-                        className="text-primary-light font-extrabold text-xs uppercase tracking-wider hover:text-white flex items-center gap-2 transition-colors group/link cursor-pointer"
+                    {/* Text */}
+                    <div style={{ direction: 'ltr' }}>
+                      <span
+                        className="text-xs font-bold uppercase tracking-widest mb-3 inline-block"
+                        style={{ color: 'var(--color-primary)' }}
                       >
-                        Mode Specifications
-                        <ArrowRight size={14} className="transition-transform group-hover/link:translate-x-1" />
+                        {svc.label}
+                      </span>
+                      <h3
+                        className="mb-3"
+                        style={{
+                          fontFamily: 'var(--font-heading)',
+                          fontSize: 'clamp(1.4rem, 2.8vw, 2rem)',
+                          fontWeight: 800,
+                          color: 'var(--color-charcoal)',
+                          lineHeight: 1.18,
+                          letterSpacing: '-0.01em',
+                        }}
+                      >
+                        {svc.title}
+                      </h3>
+                      <p
+                        className="font-semibold mb-4"
+                        style={{ color: 'var(--color-ink)', fontSize: '1rem' }}
+                      >
+                        {svc.caption}
+                      </p>
+                      <p
+                        style={{
+                          color: 'var(--color-muted)',
+                          fontSize: '0.925rem',
+                          lineHeight: 1.75,
+                          marginBottom: '1.75rem',
+                        }}
+                      >
+                        {svc.body}
+                      </p>
+                      <Link
+                        to={svc.link}
+                        className="inline-flex items-center gap-2 font-bold text-sm group"
+                        style={{ color: 'var(--color-primary)' }}
+                      >
+                        Explore {svc.label}
+                        <ArrowRight
+                          size={15}
+                          className="transition-transform group-hover:translate-x-1"
+                        />
                       </Link>
                     </div>
                   </div>
-                  </Reveal>
-                );
-              })}
-            </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Routes Section — Premium Network Visualization */}
-      <section className="relative overflow-hidden bg-[#07101f] py-24 text-white">
-        {/* Subtle grid backdrop */}
-        <div className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
-        {/* Ambient glows */}
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[180px] pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full bg-primary/10 blur-[160px] pointer-events-none" />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 space-y-16">
-
-          {/* Section Header */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* WHY PPR — horizontal list with dividers, NOT cards                */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 md:py-32" style={{ background: 'var(--color-navy)' }}>
+        <div className="container-site">
           <Reveal variant="fade-up">
-            <div className="text-center max-w-3xl mx-auto space-y-4">
-              <span className="text-xs font-bold uppercase tracking-widest text-blue-300 bg-white/5 px-4 py-1.5 rounded-full border border-white/10 inline-block">
-                Global Trade Corridors
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-                Connecting Strategic Markets Across Active Corridors
+            <div className="mb-16 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+              <div>
+                <span className="eyebrow-tag-dark mb-3 inline-block">Why PPR Logistics</span>
+                <h2
+                  className="text-white"
+                  style={{
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)',
+                    fontWeight: 900,
+                    lineHeight: 1.1,
+                    letterSpacing: '-0.015em',
+                  }}
+                >
+                  Built for Demanding
+                  <br />
+                  Global Supply Chains.
+                </h2>
+              </div>
+              <Link to="/about" className="btn btn-secondary shrink-0">
+                About PPR
+                <ArrowRight size={14} />
+              </Link>
+            </div>
+          </Reveal>
+
+          {/* Differentiator list — each item separated by a horizontal rule */}
+          <div>
+            {whyPPR.map((item, i) => (
+              <Reveal key={item.title} variant="fade-up" delay={`${i * 50}ms`}>
+                <div
+                  className="group flex flex-col sm:flex-row sm:items-start gap-5 sm:gap-10 py-8 transition-colors duration-200"
+                  style={{
+                    borderTop: '1px solid rgba(255,255,255,0.12)',
+                  }}
+                >
+                  {/* Number */}
+                  <span
+                    className="shrink-0 text-4xl font-black"
+                    style={{
+                      fontFamily: 'var(--font-heading)',
+                      color: 'rgba(255,255,255,0.15)',
+                      letterSpacing: '-0.05em',
+                      lineHeight: 1,
+                      minWidth: '2.5rem',
+                    }}
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+
+                  {/* Icon */}
+                  <div
+                    className="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center"
+                    style={{
+                      background: 'var(--color-primary-muted)',
+                      color: 'var(--color-primary)',
+                      border: '1px solid rgba(232,93,4,0.18)',
+                    }}
+                  >
+                    {item.icon}
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3
+                      className="text-white font-bold mb-1.5"
+                      style={{
+                        fontFamily: 'var(--font-heading)',
+                        fontSize: '1.1rem',
+                      }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p className="text-slate-300 text-sm" style={{ lineHeight: 1.75 }}>
+                      {item.body}
+                    </p>
+                  </div>
+
+                  {/* Arrow on hover */}
+                  <ChevronRight
+                    size={20}
+                    className="hidden sm:block shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                    style={{ color: 'var(--color-primary)' }}
+                  />
+                </div>
+              </Reveal>
+            ))}
+            <div style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }} />
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* GLOBAL CORRIDORS — SVG network + corridor list                    */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 md:py-32" style={{ background: 'var(--color-bg)' }}>
+        <div className="container-site">
+          <Reveal variant="fade-up">
+            <div className="mb-12 text-center max-w-2xl mx-auto">
+              <span className="eyebrow-tag mb-3 inline-block">Trade Network</span>
+              <h2
+                style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)',
+                  fontWeight: 900,
+                  color: 'var(--color-charcoal)',
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.015em',
+                }}
+              >
+                Connecting Strategic Markets
+                <br />
+                Across Active Corridors.
               </h2>
-              <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
-                PPR Logistics operates an extensive multimodal network across Central Asia, the Caucasus, the Middle East, Russia, Europe, and beyond — connecting key economic zones through reliable, SLA-driven transit corridors.
+              <p className="text-slate-500 text-sm mt-4 leading-relaxed">
+                PPR operates an extensive multimodal network spanning Central Asia, the Caucasus,
+                the Middle East, Russia, and Europe — built on reliable, SLA-driven transit.
               </p>
             </div>
           </Reveal>
 
-          {/* SVG Network Visualization */}
-          <Reveal variant="fade-up" delay="100ms">
-          <div className="relative w-full max-w-4xl mx-auto select-none">
-            <svg
-              viewBox="0 0 900 340"
-              className="w-full h-auto"
-              aria-hidden="true"
+          {/* SVG Network visualization — preserved from original */}
+          <Reveal variant="fade-up" delay="80ms">
+            <div
+              className="relative w-full max-w-5xl mx-auto mb-12 rounded-2xl p-6 sm:p-10"
+              style={{
+                background: 'var(--color-navy)',
+                border: '1px solid rgba(255,255,255,0.06)',
+                boxShadow: 'var(--shadow-raised)',
+              }}
             >
-              <defs>
-                {/* Animated dash pattern for route lines */}
-                <style>{`
-                  @keyframes dashFlow {
-                    to { stroke-dashoffset: -40; }
-                  }
-                  .route-line { animation: dashFlow 2.5s linear infinite; }
-                  .route-line-slow { animation: dashFlow 4s linear infinite; }
-                  @keyframes nodePulse {
-                    0%, 100% { opacity: 0.6; r: 5; }
-                    50% { opacity: 1; r: 7; }
-                  }
-                  .hub-pulse { animation: nodePulse 2.5s ease-in-out infinite; }
-                `}</style>
-                <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.5" />
-                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
-                </radialGradient>
-                <marker id="arrowBlue" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-                  <path d="M0,0 L6,3 L0,6 Z" fill="#60a5fa" opacity="0.9" />
-                </marker>
-                <marker id="arrowSlate" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-                  <path d="M0,0 L6,3 L0,6 Z" fill="#94a3b8" opacity="0.7" />
-                </marker>
-              </defs>
-
-              {/* ── Route arcs (curved paths between hubs) ── */}
-              {/* Ashgabat → Dubai */}
-              <path d="M 450,170 Q 570,110 690,190" fill="none" stroke="#3b82f6" strokeWidth="1.5"
-                strokeDasharray="8 6" className="route-line" markerEnd="url(#arrowBlue)" />
-              {/* Ashgabat → Moscow */}
-              <path d="M 450,170 Q 350,80 210,110" fill="none" stroke="#3b82f6" strokeWidth="1.5"
-                strokeDasharray="8 6" className="route-line" markerEnd="url(#arrowBlue)" />
-              {/* Ashgabat → Istanbul */}
-              <path d="M 450,170 Q 330,220 165,195" fill="none" stroke="#94a3b8" strokeWidth="1.2"
-                strokeDasharray="6 6" className="route-line-slow" markerEnd="url(#arrowSlate)" />
-              {/* Dubai → China (Shanghai) */}
-              <path d="M 690,190 Q 780,140 840,150" fill="none" stroke="#94a3b8" strokeWidth="1.2"
-                strokeDasharray="6 6" className="route-line-slow" markerEnd="url(#arrowSlate)" />
-              {/* Moscow → Warsaw */}
-              <path d="M 210,110 Q 140,125 80,145" fill="none" stroke="#94a3b8" strokeWidth="1.2"
-                strokeDasharray="6 6" className="route-line-slow" markerEnd="url(#arrowSlate)" />
-              {/* Dubai → Karachi */}
-              <path d="M 690,190 Q 730,240 760,260" fill="none" stroke="#94a3b8" strokeWidth="1.2"
-                strokeDasharray="6 6" className="route-line-slow" markerEnd="url(#arrowSlate)" />
-
-              {/* ── Hub glow halos ── */}
-              <circle cx="450" cy="170" r="28" fill="url(#nodeGlow)" />
-              <circle cx="690" cy="190" r="20" fill="url(#nodeGlow)" />
-              <circle cx="210" cy="110" r="14" fill="url(#nodeGlow)" />
-
-              {/* ── Hub nodes ── */}
-              {/* Central Hub: Ashgabat */}
-              <circle cx="450" cy="170" r="9" fill="#1e3a5f" stroke="#3b82f6" strokeWidth="2.5" />
-              <circle cx="450" cy="170" r="4" fill="#60a5fa" />
-
-              {/* Dubai */}
-              <circle cx="690" cy="190" r="7" fill="#1e3a5f" stroke="#3b82f6" strokeWidth="2" />
-              <circle cx="690" cy="190" r="3" fill="#60a5fa" />
-
-              {/* Moscow */}
-              <circle cx="210" cy="110" r="6" fill="#1e3a5f" stroke="#64748b" strokeWidth="1.5" />
-              <circle cx="210" cy="110" r="2.5" fill="#94a3b8" />
-
-              {/* Istanbul */}
-              <circle cx="165" cy="195" r="5.5" fill="#1e3a5f" stroke="#64748b" strokeWidth="1.5" />
-              <circle cx="165" cy="195" r="2" fill="#94a3b8" />
-
-              {/* Warsaw / Europe Gateway */}
-              <circle cx="80" cy="145" r="5" fill="#1e3a5f" stroke="#64748b" strokeWidth="1.5" />
-              <circle cx="80" cy="145" r="2" fill="#94a3b8" />
-
-              {/* China (East Asia) */}
-              <circle cx="840" cy="150" r="5" fill="#1e3a5f" stroke="#64748b" strokeWidth="1.5" />
-              <circle cx="840" cy="150" r="2" fill="#94a3b8" />
-
-              {/* Karachi / Pakistan */}
-              <circle cx="760" cy="260" r="5" fill="#1e3a5f" stroke="#64748b" strokeWidth="1.5" />
-              <circle cx="760" cy="260" r="2" fill="#94a3b8" />
-
-              {/* ── Pulsing rings on main hubs ── */}
-              <circle cx="450" cy="170" className="hub-pulse" r="5" fill="#3b82f6" opacity="0.6" />
-
-              {/* ── Labels ── */}
-              <text x="450" y="155" textAnchor="middle" fill="white" fontSize="11" fontWeight="800" fontFamily="Inter, sans-serif">Ashgabat</text>
-              <text x="450" y="145" textAnchor="middle" fill="#60a5fa" fontSize="8" fontFamily="Inter, sans-serif">CENTRAL HUB</text>
-
-              <text x="690" y="178" textAnchor="middle" fill="#e2e8f0" fontSize="9.5" fontWeight="700" fontFamily="Inter, sans-serif">Dubai</text>
-              <text x="690" y="168" textAnchor="middle" fill="#60a5fa" fontSize="7.5" fontFamily="Inter, sans-serif">SEA &amp; AIR HUB</text>
-
-              <text x="210" y="100" textAnchor="middle" fill="#cbd5e1" fontSize="9" fontWeight="600" fontFamily="Inter, sans-serif">Moscow</text>
-              <text x="165" y="184" textAnchor="middle" fill="#cbd5e1" fontSize="9" fontWeight="600" fontFamily="Inter, sans-serif">Istanbul</text>
-              <text x="80" y="134" textAnchor="middle" fill="#94a3b8" fontSize="8.5" fontWeight="600" fontFamily="Inter, sans-serif">Europe</text>
-              <text x="840" y="140" textAnchor="middle" fill="#94a3b8" fontSize="8.5" fontWeight="600" fontFamily="Inter, sans-serif">China</text>
-              <text x="770" y="278" textAnchor="middle" fill="#94a3b8" fontSize="8.5" fontWeight="600" fontFamily="Inter, sans-serif">Pakistan</text>
-            </svg>
-
-            {/* Legend */}
-            <div className="flex items-center justify-center gap-6 mt-2 text-[11px] font-semibold text-slate-400">
-              <span className="flex items-center gap-1.5">
-                <span className="w-6 h-0.5 bg-blue-400 inline-block rounded-full" />
-                Primary Corridor
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-6 h-0.5 bg-slate-500 inline-block rounded-full" />
-                Secondary Corridor
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-blue-500 inline-block" />
-                Operations Hub
-              </span>
+              <svg viewBox="0 0 900 340" className="w-full h-auto" aria-hidden="true">
+                <defs>
+                  <style>{`
+                    @keyframes dashFlow { to { stroke-dashoffset: -40; } }
+                    .route-line      { animation: dashFlow 2.5s linear infinite; }
+                    .route-line-slow { animation: dashFlow 4s linear infinite; }
+                    @keyframes nodePulse { 0%,100%{opacity:.6;r:5} 50%{opacity:1;r:7} }
+                    .hub-pulse { animation: nodePulse 2.5s ease-in-out infinite; }
+                  `}</style>
+                  <radialGradient id="ng" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#F4985A" stopOpacity="0.45" />
+                    <stop offset="100%" stopColor="#F4985A" stopOpacity="0" />
+                  </radialGradient>
+                  <marker id="ap" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                    <path d="M0,0 L6,3 L0,6 Z" fill="#F4985A" opacity="0.95" />
+                  </marker>
+                  <marker id="as" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                    <path d="M0,0 L6,3 L0,6 Z" fill="#64748B" opacity="0.8" />
+                  </marker>
+                </defs>
+                {/* Route arcs */}
+                <path d="M 450,170 Q 570,110 690,190" fill="none" stroke="#F4985A" strokeWidth="2.5" strokeDasharray="8 6" className="route-line" markerEnd="url(#ap)" />
+                <path d="M 450,170 Q 350,80 210,110" fill="none" stroke="#F4985A" strokeWidth="2.5" strokeDasharray="8 6" className="route-line" markerEnd="url(#ap)" />
+                <path d="M 450,170 Q 330,220 165,195" fill="none" stroke="#94a3b8" strokeWidth="1.8" strokeDasharray="6 6" className="route-line-slow" markerEnd="url(#as)" />
+                <path d="M 690,190 Q 780,140 840,150" fill="none" stroke="#94a3b8" strokeWidth="1.8" strokeDasharray="6 6" className="route-line-slow" markerEnd="url(#as)" />
+                <path d="M 210,110 Q 140,125 80,145" fill="none" stroke="#94a3b8" strokeWidth="1.8" strokeDasharray="6 6" className="route-line-slow" markerEnd="url(#as)" />
+                <path d="M 690,190 Q 730,240 760,260" fill="none" stroke="#94a3b8" strokeWidth="1.8" strokeDasharray="6 6" className="route-line-slow" markerEnd="url(#as)" />
+                {/* Glow halos */}
+                <circle cx="450" cy="170" r="38" fill="url(#ng)" />
+                <circle cx="690" cy="190" r="28" fill="url(#ng)" />
+                {/* Hub nodes */}
+                <circle cx="450" cy="170" r="12" fill="#04101F" stroke="#F4985A" strokeWidth="3" />
+                <circle cx="450" cy="170" r="5" fill="#F4985A" />
+                <circle cx="690" cy="190" r="10" fill="#04101F" stroke="#F4985A" strokeWidth="2.5" />
+                <circle cx="690" cy="190" r="4" fill="#F4985A" />
+                <circle cx="210" cy="110" r="8" fill="#04101F" stroke="#94a3b8" strokeWidth="2" />
+                <circle cx="210" cy="110" r="3" fill="#94a3b8" />
+                <circle cx="165" cy="195" r="7" fill="#04101F" stroke="#94a3b8" strokeWidth="2" />
+                <circle cx="165" cy="195" r="3" fill="#94a3b8" />
+                <circle cx="80" cy="145" r="6" fill="#04101F" stroke="#94a3b8" strokeWidth="1.5" />
+                <circle cx="80" cy="145" r="2.5" fill="#94a3b8" />
+                <circle cx="840" cy="150" r="6" fill="#04101F" stroke="#94a3b8" strokeWidth="1.5" />
+                <circle cx="840" cy="150" r="2.5" fill="#94a3b8" />
+                <circle cx="760" cy="260" r="6" fill="#04101F" stroke="#94a3b8" strokeWidth="1.5" />
+                <circle cx="760" cy="260" r="2.5" fill="#94a3b8" />
+                <circle cx="450" cy="170" className="hub-pulse" r="5" fill="#F4985A" opacity="0.6" />
+                {/* Labels */}
+                <text x="450" y="150" textAnchor="middle" fill="#fff" fontSize="14" fontWeight="800" fontFamily="Inter,sans-serif">Ashgabat</text>
+                <text x="450" y="138" textAnchor="middle" fill="#F4985A" fontSize="9" fontWeight="700" fontFamily="Inter,sans-serif">CENTRAL HUB</text>
+                <text x="690" y="174" textAnchor="middle" fill="#e2eaf4" fontSize="12" fontWeight="700" fontFamily="Inter,sans-serif">Dubai</text>
+                <text x="690" y="162" textAnchor="middle" fill="#F4985A" fontSize="8.5" fontWeight="700" fontFamily="Inter,sans-serif">SEA &amp; AIR HUB</text>
+                <text x="210" y="96" textAnchor="middle" fill="#cbd5e1" fontSize="11" fontWeight="700" fontFamily="Inter,sans-serif">Moscow</text>
+                <text x="165" y="182" textAnchor="middle" fill="#cbd5e1" fontSize="11" fontWeight="700" fontFamily="Inter,sans-serif">Istanbul</text>
+                <text x="80" y="132" textAnchor="middle" fill="#cbd5e1" fontSize="10" fontWeight="600" fontFamily="Inter,sans-serif">Europe</text>
+                <text x="840" y="138" textAnchor="middle" fill="#cbd5e1" fontSize="10" fontWeight="600" fontFamily="Inter,sans-serif">China</text>
+                <text x="770" y="276" textAnchor="middle" fill="#cbd5e1" fontSize="10" fontWeight="600" fontFamily="Inter,sans-serif">Pakistan</text>
+              </svg>
+              {/* Legend */}
+              <div className="flex items-center justify-center gap-6 mt-4 text-xs font-medium text-slate-300">
+                <span className="flex items-center gap-2">
+                  <span className="w-6 h-px inline-block rounded-full" style={{ background: 'var(--color-primary)' }} />
+                  Primary Corridor
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="w-6 h-px inline-block rounded-full bg-slate-500" />
+                  Secondary Corridor
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ background: 'var(--color-primary)' }} />
+                  Hub
+                </span>
+              </div>
             </div>
-          </div>
           </Reveal>
 
-          {/* Corridor Cards Grid */}
-          <Reveal variant="fade-up" delay="80ms">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-
-            {/* Card 1: Ashgabat ↔ Dubai */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4 hover:bg-white/8 hover:border-blue-500/30 transition-all group">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-extrabold uppercase tracking-widest text-blue-300 bg-blue-500/10 px-2.5 py-1 rounded-lg">Primary Corridor</span>
-                <div className="flex gap-1.5">
-                  <span title="Road" className="w-6 h-6 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-[9px]">🚛</span>
-                  <span title="Air" className="w-6 h-6 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-[9px]">✈️</span>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm font-extrabold text-white">
-                  <span className="w-2 h-2 rounded-full bg-blue-400 shrink-0" />
-                  Ashgabat, Turkmenistan
-                </div>
-                <div className="flex items-center gap-1 pl-1">
-                  <div className="flex flex-col gap-0.5 pl-0.5">
-                    <span className="w-px h-3 bg-slate-600 block ml-0.5" />
-                    <span className="w-px h-3 bg-slate-600 block ml-0.5" />
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 text-sm font-extrabold text-white">
-                  <span className="w-2 h-2 rounded-full bg-blue-300 shrink-0" />
-                  Dubai, UAE
-                </div>
-              </div>
-              <p className="text-slate-400 text-xs leading-relaxed">Central Asia coordination hub to Sea &amp; Air forwarding center. Road and express air cargo transit.</p>
-            </div>
-
-            {/* Card 2: Ashgabat ↔ Moscow */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4 hover:bg-white/8 hover:border-blue-500/30 transition-all group">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-extrabold uppercase tracking-widest text-blue-300 bg-blue-500/10 px-2.5 py-1 rounded-lg">Primary Corridor</span>
-                <div className="flex gap-1.5">
-                  <span title="Rail" className="w-6 h-6 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-[9px]">🚂</span>
-                  <span title="Road" className="w-6 h-6 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-[9px]">🚛</span>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm font-extrabold text-white">
-                  <span className="w-2 h-2 rounded-full bg-blue-400 shrink-0" />
-                  Ashgabat, Turkmenistan
-                </div>
-                <div className="pl-1">
-                  <div className="flex flex-col gap-0.5 pl-0.5">
-                    <span className="w-px h-3 bg-slate-600 block ml-0.5" />
-                    <span className="w-px h-3 bg-slate-600 block ml-0.5" />
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 text-sm font-extrabold text-white">
-                  <span className="w-2 h-2 rounded-full bg-slate-400 shrink-0" />
-                  Moscow, Russia
-                </div>
-              </div>
-              <p className="text-slate-400 text-xs leading-relaxed">Rail wagon and road freight corridor connecting Central Asia with Russian market access points.</p>
-            </div>
-
-            {/* Card 3: Central Asia → Europe */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4 hover:bg-white/8 hover:border-blue-500/30 transition-all group">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 bg-slate-700/40 px-2.5 py-1 rounded-lg">Secondary Corridor</span>
-                <div className="flex gap-1.5">
-                  <span title="Rail" className="w-6 h-6 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-[9px]">🚂</span>
-                  <span title="Ocean" className="w-6 h-6 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-[9px]">🚢</span>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm font-extrabold text-white">
-                  <span className="w-2 h-2 rounded-full bg-slate-400 shrink-0" />
-                  Central Asia
-                </div>
-                <div className="pl-1">
-                  <div className="flex flex-col gap-0.5 pl-0.5">
-                    <span className="w-px h-3 bg-slate-600 block ml-0.5" />
-                    <span className="w-px h-3 bg-slate-600 block ml-0.5" />
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 text-sm font-extrabold text-white">
-                  <span className="w-2 h-2 rounded-full bg-slate-400 shrink-0" />
-                  Turkey &amp; Europe Gateway
-                </div>
-              </div>
-              <p className="text-slate-400 text-xs leading-relaxed">Rail and ocean multimodal route via Iran and Turkey crossing into European market hubs.</p>
-            </div>
-
-            {/* Card 4: Dubai → Pakistan / South Asia */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4 hover:bg-white/8 hover:border-blue-500/30 transition-all group">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 bg-slate-700/40 px-2.5 py-1 rounded-lg">Secondary Corridor</span>
-                <div className="flex gap-1.5">
-                  <span title="Ocean" className="w-6 h-6 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-[9px]">🚢</span>
-                  <span title="Air" className="w-6 h-6 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-[9px]">✈️</span>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm font-extrabold text-white">
-                  <span className="w-2 h-2 rounded-full bg-blue-300 shrink-0" />
-                  Dubai, UAE
-                </div>
-                <div className="pl-1">
-                  <div className="flex flex-col gap-0.5 pl-0.5">
-                    <span className="w-px h-3 bg-slate-600 block ml-0.5" />
-                    <span className="w-px h-3 bg-slate-600 block ml-0.5" />
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 text-sm font-extrabold text-white">
-                  <span className="w-2 h-2 rounded-full bg-slate-400 shrink-0" />
-                  Pakistan / South Asia
-                </div>
-              </div>
-              <p className="text-slate-400 text-xs leading-relaxed">Ocean FCL/LCL container and express air freight forwarding to South Asian markets via Dubai hub.</p>
-            </div>
-
-            {/* Card 5: China ↔ Central Asia */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4 hover:bg-white/8 hover:border-blue-500/30 transition-all group">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 bg-slate-700/40 px-2.5 py-1 rounded-lg">Secondary Corridor</span>
-                <div className="flex gap-1.5">
-                  <span title="Rail" className="w-6 h-6 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-[9px]">🚂</span>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm font-extrabold text-white">
-                  <span className="w-2 h-2 rounded-full bg-slate-400 shrink-0" />
-                  China (East Asia)
-                </div>
-                <div className="pl-1">
-                  <div className="flex flex-col gap-0.5 pl-0.5">
-                    <span className="w-px h-3 bg-slate-600 block ml-0.5" />
-                    <span className="w-px h-3 bg-slate-600 block ml-0.5" />
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 text-sm font-extrabold text-white">
-                  <span className="w-2 h-2 rounded-full bg-blue-400 shrink-0" />
-                  Ashgabat, Turkmenistan
-                </div>
-              </div>
-              <p className="text-slate-400 text-xs leading-relaxed">China–Europe rail corridor transit through Central Asia. SMGS-standardized wagon fleet operations.</p>
-            </div>
-
-            {/* Card 6: Operations Hubs Summary */}
-            <div className="bg-gradient-to-br from-blue-600/20 to-blue-900/20 border border-blue-500/25 rounded-2xl p-5 space-y-4">
-              <span className="text-[10px] font-extrabold uppercase tracking-widest text-blue-300 bg-blue-500/10 px-2.5 py-1 rounded-lg inline-block">Operations Hubs</span>
-              <div className="space-y-3">
-                {[
-                  { city: 'Ashgabat, Turkmenistan', role: 'Central Asia & Caucasus coordination hub, major rail & highway junction.' },
-                  { city: 'Dubai, UAE — Prime Tower', role: 'Sea & Air freight forwarding management, enterprise corporate accounts.' },
-                  { city: 'Cross-Border Customs Points', role: 'Iran, Turkey, Russia, Europe, and China border clearance support.' },
-                ].map((hub, i) => (
-                  <div key={i} className="flex gap-3 items-start">
-                    <span className="w-5 h-5 rounded-full bg-blue-500/20 border border-blue-500/30 text-blue-300 text-[9px] font-extrabold flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
-                    <div>
-                      <div className="text-white text-xs font-bold">{hub.city}</div>
-                      <div className="text-slate-400 text-[11px] leading-relaxed">{hub.role}</div>
+          {/* Corridor table-style list */}
+          <Reveal variant="fade-up" delay="120ms">
+            <div
+              className="rounded-2xl overflow-hidden"
+              style={{
+                border: '1px solid var(--color-border)',
+                background: '#fff',
+                boxShadow: 'var(--shadow-card)',
+              }}
+            >
+              {corridors.map((c, i) => (
+                <div
+                  key={i}
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-6 py-5 transition-colors hover:bg-slate-50"
+                  style={{
+                    borderBottom: i < corridors.length - 1 ? '1px solid var(--color-border)' : 'none',
+                  }}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2 text-sm font-bold" style={{ color: 'var(--color-charcoal)' }}>
+                      <MapPin size={14} style={{ color: 'var(--color-primary)' }} />
+                      {c.from}
+                    </div>
+                    <ArrowRight size={14} className="text-slate-300 shrink-0" />
+                    <div className="text-sm font-bold" style={{ color: 'var(--color-charcoal)' }}>
+                      {c.to}
                     </div>
                   </div>
-                ))}
+                  <div className="hidden sm:block text-sm text-slate-400" style={{ maxWidth: '260px' }}>
+                    {c.desc}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {c.modes.map((m) => (
+                      <span
+                        key={m}
+                        className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full"
+                        style={{
+                          background: 'var(--color-primary-muted)',
+                          color: 'var(--color-primary)',
+                          border: '1px solid rgba(232,93,4,0.15)',
+                        }}
+                      >
+                        {m}
+                      </span>
+                    ))}
+                    <span
+                      className="text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full ml-1"
+                      style={{
+                        background: c.type === 'Primary' ? 'rgba(232,93,4,0.10)' : 'rgba(100,116,139,0.10)',
+                        color: c.type === 'Primary' ? 'var(--color-primary)' : '#64748B',
+                        border: `1px solid ${c.type === 'Primary' ? 'rgba(232,93,4,0.18)' : 'rgba(100,116,139,0.15)'}`,
+                      }}
+                    >
+                      {c.type}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          {/* CTA row */}
+          <Reveal variant="fade-up" delay="100ms">
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p className="text-slate-500 text-sm">
+                Need a specific corridor quote? Our route coordinators are available 24/7.
+              </p>
+              <Link to="/routes" className="btn btn-primary shrink-0">
+                View All Routes
+                <ArrowRight size={14} />
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* QUOTE CTA STRIP — Conversion section                                */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <section
+        className="py-20 md:py-24 relative overflow-hidden bg-navy"
+        style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
+      >
+        {/* Subtle radial glow */}
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full pointer-events-none opacity-20"
+          style={{
+            background: 'radial-gradient(circle, var(--color-primary) 0%, transparent 70%)',
+            filter: 'blur(50px)',
+          }}
+        />
+        <div className="relative z-10 container-site">
+          <Reveal variant="fade-up">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+              <div className="max-w-xl">
+                <div className="flex items-center gap-2 mb-3">
+                  <span
+                    className="h-[2px] w-8 rounded-full inline-block"
+                    style={{ background: 'var(--color-primary)' }}
+                  />
+                  <span className="text-[var(--color-primary-light)] text-xs font-bold uppercase tracking-widest">
+                    Get Started Today
+                  </span>
+                </div>
+                <h2
+                  className="text-white mb-3"
+                  style={{
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)',
+                    fontWeight: 800,
+                    lineHeight: 1.15,
+                    letterSpacing: '-0.02em',
+                  }}
+                >
+                  Ready to Move Your Cargo?
+                </h2>
+                <p className="text-[var(--color-text-on-dark)] text-sm md:text-base leading-relaxed">
+                  Get a reliable logistics solution tailored to your route, cargo specifications, and delivery requirements.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+                <Link
+                  to="/contact"
+                  className="btn btn-primary text-sm font-bold tracking-wide"
+                >
+                  Request a Quote
+                  <ArrowRight size={15} />
+                </Link>
+                <Link
+                  to="/services"
+                  className="btn btn-secondary text-sm font-semibold"
+                >
+                  Explore Services
+                </Link>
               </div>
             </div>
-          </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* INSIGHTS & MAP                                                     */}
+      {/* ═══════════════════════════════════════════════════════════════════ */}
+      <section className="py-24 md:py-28" style={{ background: '#fff' }}>
+        <div className="container-site space-y-20">
+
+          {/* Blog Slider */}
+          <Reveal variant="fade-up">
+            <BlogSlider />
           </Reveal>
 
-          {/* CTA Row */}
-          <Reveal variant="fade-in">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4 border-t border-white/10">
-            <p className="text-slate-400 text-sm max-w-lg">
-              Need a specific corridor quote or custom route planning? Our route coordinators are available 24/7.
-            </p>
-            <Link
-              to="/routes"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl text-xs uppercase tracking-wider shadow-md hover:shadow-primary/30 transition-all group whitespace-nowrap"
+          {/* Map */}
+          <Reveal variant="fade-up">
+            <div
+              className="rounded-2xl overflow-hidden"
+              style={{
+                border: '1px solid var(--color-border)',
+                boxShadow: 'var(--shadow-card)',
+              }}
             >
-              View All Active Routes
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-            </Link>
-          </div>
+              <div
+                className="px-6 py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                style={{ borderBottom: '1px solid var(--color-border)' }}
+              >
+                <div>
+                  <span
+                    className="text-xs font-bold uppercase tracking-widest"
+                    style={{ color: 'var(--color-primary)' }}
+                  >
+                    Global Facilities
+                  </span>
+                  <h3
+                    className="mt-0.5"
+                    style={{
+                      fontFamily: 'var(--font-heading)',
+                      fontSize: '1.2rem',
+                      fontWeight: 800,
+                      color: 'var(--color-charcoal)',
+                    }}
+                  >
+                    PPR Logistics Facility Location
+                  </h3>
+                </div>
+                <div
+                  className="flex items-center gap-2 text-xs font-medium px-3.5 py-2 rounded-xl"
+                  style={{
+                    background: 'var(--color-bg)',
+                    border: '1px solid var(--color-border)',
+                    color: 'var(--color-ink)',
+                  }}
+                >
+                  <MapPin size={14} style={{ color: 'var(--color-primary)' }} />
+                  334 W Armory Dr, Thornton, IL 60476, USA
+                </div>
+              </div>
+              <div className="h-96 md:h-[28rem]">
+                <iframe
+                  src="https://maps.google.com/maps?q=334%20W%20Armory%20Dr%2C%20Thornton%2C%20IL%2060476&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, display: 'block' }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  title="PPR Logistics Facility"
+                />
+              </div>
+            </div>
           </Reveal>
         </div>
-      </section>
-
-      {/* Insights / Blog Slider */}
-      <section className="max-w-7xl mx-auto px-6">
-        <Reveal variant="fade-up">
-          <BlogSlider />
-        </Reveal>
-      </section>
-
-      {/* Map Embed Section */}
-      <section className="max-w-7xl mx-auto px-6">
-        <Reveal variant="fade-up">
-        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-lg space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
-            <div className="space-y-1">
-              <span className="text-xs font-bold text-primary uppercase tracking-widest">Global Facilities</span>
-              <h2 className="text-2xl font-extrabold text-slate-900">PPR Logistics Facility Location</h2>
-            </div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-slate-600 bg-slate-50 px-4 py-2 rounded-xl border border-slate-100">
-              <MapPin size={16} className="text-primary shrink-0" />
-              <span>334 W Armory Dr, Thornton, IL 60476, USA</span>
-            </div>
-          </div>
-          <div className="w-full h-96 rounded-2xl overflow-hidden shadow-inner border border-slate-200">
-            <iframe
-              src="https://maps.google.com/maps?q=334%20W%20Armory%20Dr%2C%20Thornton%2C%20IL%2060476&t=&z=15&ie=UTF8&iwloc=&output=embed"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              title="PPR Logistics Facility"
-            ></iframe>
-          </div>
-        </div>
-        </Reveal>
       </section>
     </div>
   );

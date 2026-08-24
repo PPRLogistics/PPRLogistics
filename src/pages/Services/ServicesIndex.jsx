@@ -57,10 +57,10 @@ export default function ServicesIndex() {
   return (
     <div className="space-y-16 pb-20 font-sans">
       {/* Page Header Banner */}
-      <section className="bg-[#0b132b] py-20 text-white text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-600/20 via-transparent to-transparent pointer-events-none"></div>
+      <section className="bg-[color:var(--color-navy-dark)] py-20 text-white text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[color:var(--color-primary)]/20 via-transparent to-transparent pointer-events-none"></div>
         <div className="relative z-10 max-w-4xl mx-auto px-6 space-y-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-blue-200 bg-white/10 px-4 py-1.5 rounded-full border border-white/15 inline-block">
+          <span className="text-xs font-bold uppercase tracking-widest text-[color:var(--color-primary)] bg-white/10 px-4 py-1.5 rounded-full border border-white/15 inline-block">
             Enterprise Transport Infrastructure
           </span>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Our Transport Capabilities</h1>
@@ -75,7 +75,7 @@ export default function ServicesIndex() {
         {serviceCards.map((service, index) => (
           <div
             key={service.title}
-            className={`flex flex-col lg:flex-row items-stretch gap-10 bg-white p-6 sm:p-10 rounded-3xl border border-slate-200/80 shadow-md card-hover-elevation group ${
+            className={`card flex flex-col lg:flex-row items-stretch gap-10 bg-white p-6 sm:p-10 rounded-3xl border border-slate-200/80 shadow-md card-hover-elevation group ${
               index % 2 === 1 ? 'lg:flex-row-reverse' : ''
             }`}
           >
@@ -86,7 +86,7 @@ export default function ServicesIndex() {
                 alt={service.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
-              <div className="absolute top-4 left-4 bg-slate-950/85 backdrop-blur-md text-blue-300 text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full border border-white/15">
+              <div className="absolute top-4 left-4 bg-slate-950/85 backdrop-blur-md text-[color:var(--color-primary)] text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full border border-white/15">
                 {service.badge}
               </div>
             </div>
@@ -131,10 +131,7 @@ export default function ServicesIndex() {
               </div>
 
               <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                <Link
-                  to={service.link}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-dark text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-colors cursor-pointer group/btn"
-                >
+                <Link to={service.link} className="btn-primary inline-flex items-center gap-2 px-6 py-3">
                   Explore Mode Specifications
                   <ArrowRight size={15} className="transition-transform group-hover/btn:translate-x-1" />
                 </Link>

@@ -1,7 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, ArrowUp, PhoneCall, Shield, ChevronRight } from 'lucide-react';
-import logoImg from '../assets/logo2.png';
+import logoImg from '../assets/logo3.png';
+
+const navSections = [
+  {
+    label: 'Company',
+    links: [
+      { name: 'Home',    path: '/' },
+      { name: 'About PPR', path: '/about' },
+      { name: 'Contact Us', path: '/contact' },
+    ],
+  },
+  {
+    label: 'Services',
+    links: [
+      { name: 'Road Freight',        path: '/services/road' },
+      { name: 'Rail & Wagon Freight', path: '/services/rail' },
+      { name: 'Express Air Cargo',   path: '/services/air' },
+      { name: 'Ocean Freight',       path: '/services/ocean' },
+      { name: 'All Services',        path: '/services' },
+    ],
+  },
+  {
+    label: 'Network',
+    links: [
+      { name: 'Trade Corridors',  path: '/routes' },
+      { name: 'Global Routes',    path: '/routes' },
+    ],
+  },
+];
 
 export default function Footer() {
   const scrollToTop = (e) => {
@@ -10,145 +38,178 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#0b132b] text-slate-300 pt-16 pb-8 border-t border-slate-800 relative font-sans">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-        {/* Company Profile */}
-        <div className="space-y-5">
-          <Link to="/" className="inline-block focus:outline-none">
-            <img 
-              src={logoImg} 
-              alt="PPR Logistics" 
-              className="h-[48px] w-auto object-contain bg-transparent border-none shadow-none p-0 m-0" 
-            />
-          </Link>
-          <p className="text-xs leading-relaxed text-slate-400">
-            PPR International Transport & Logistics Co. operates extensively in road, rail, sea, air, and multimodal freight forwarding. Delivering SLA-backed, secure global transport across Central Asia, Dubai, Europe, and Asia-Pacific trade corridors.
-          </p>
-          <div className="flex items-center gap-2 pt-1 text-[11px] text-blue-300 font-medium bg-slate-900/60 p-2.5 rounded-xl border border-slate-800">
-            <Shield size={14} className="text-primary-light shrink-0" />
-            <span>Fully Licensed & SMGS/CMR Certified Carrier</span>
+    <footer
+      style={{ background: 'var(--color-navy)', borderTop: '1px solid rgba(255,255,255,0.05)' }}
+      className="text-slate-400 font-sans"
+    >
+      {/* ── Main footer grid ── */}
+      <div className="container-site pt-16 pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
+
+          {/* Brand column — 4 cols */}
+          <div className="lg:col-span-4 space-y-5">
+            <Link to="/" className="inline-block focus:outline-none">
+              <img
+                src={logoImg}
+                alt="PPR Logistics"
+                className="h-10 w-auto object-contain"
+                style={{ filter: 'brightness(1)' }}
+              />
+            </Link>
+            <p className="text-sm leading-relaxed text-slate-300 max-w-xs">
+              PPR International Transport &amp; Logistics — specialist freight forwarder
+              covering road, rail, sea, and air across Central Asia, the Middle East,
+              Russia, and Europe.
+            </p>
+            <div
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold"
+              style={{
+                background: 'rgba(232,93,4,0.10)',
+                color: 'var(--color-primary-light)',
+                border: '1px solid rgba(232,93,4,0.18)',
+              }}
+            >
+              <Shield size={13} style={{ color: 'var(--color-primary)' }} />
+              Licensed &amp; SMGS/CMR Certified Carrier
+            </div>
+          </div>
+
+          {/* Nav sections — 2 cols each */}
+          {navSections.map((section) => (
+            <div key={section.label} className="lg:col-span-2">
+              <h5
+                className="text-white text-xs font-bold uppercase tracking-widest mb-5"
+                style={{ letterSpacing: '0.1em' }}
+              >
+                {section.label}
+              </h5>
+              <ul className="space-y-2.5">
+                {section.links.map((l) => (
+                  <li key={l.name}>
+                    <Link
+                      to={l.path}
+                      className="text-sm text-slate-300 hover:text-white transition-colors flex items-center gap-1.5 group"
+                    >
+                      <ChevronRight
+                        size={12}
+                        className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
+                        style={{ color: 'var(--color-primary)' }}
+                      />
+                      {l.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          {/* Contact column — 2 cols */}
+          <div className="lg:col-span-2">
+            <h5
+              className="text-white text-xs font-bold uppercase tracking-widest mb-5"
+              style={{ letterSpacing: '0.1em' }}
+            >
+              Contact
+            </h5>
+            <ul className="space-y-4">
+              <li>
+                <a
+                  href="tel:+99365892496"
+                  className="flex items-start gap-3 text-sm text-slate-300 hover:text-white transition-colors group"
+                >
+                  <PhoneCall
+                    size={15}
+                    className="shrink-0 mt-0.5"
+                    style={{ color: 'var(--color-primary)' }}
+                  />
+                  <div>
+                    <p className="font-medium text-slate-300">Dispatch Hotline</p>
+                    <p className="text-xs mt-0.5">+993 65892496</p>
+                    <p className="text-xs">+98 9159161665</p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <div className="flex items-start gap-3 text-sm">
+                  <Phone
+                    size={15}
+                    className="shrink-0 mt-0.5"
+                    style={{ color: 'var(--color-primary)' }}
+                  />
+                  <div>
+                    <p className="font-medium text-slate-300">WhatsApp</p>
+                    <p className="text-xs mt-0.5">+971 50 655 1006</p>
+                    <p className="text-xs">+995 555 442557</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <a
+                  href="mailto:info@prplogistic.com"
+                  className="flex items-start gap-3 text-sm text-slate-300 hover:text-white transition-colors"
+                >
+                  <Mail
+                    size={15}
+                    className="shrink-0 mt-0.5"
+                    style={{ color: 'var(--color-primary)' }}
+                  />
+                  <div>
+                    <p className="font-medium text-slate-300">Email</p>
+                    <p className="text-xs mt-0.5 underline decoration-slate-700 hover:decoration-current">
+                      info@prplogistic.com
+                    </p>
+                  </div>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* Quick Links & Services */}
-        <div>
-          <h4 className="text-white font-bold text-sm tracking-wide uppercase mb-5 pb-2 border-b border-slate-800/80 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-primary"></span>
-            Transport Services
-          </h4>
-          <ul className="space-y-2.5 text-xs text-slate-400">
-            <li>
-              <Link to="/services/road" className="hover:text-primary-light transition-colors flex items-center gap-1.5 group">
-                <ChevronRight size={12} className="text-slate-600 group-hover:text-primary-light transition-colors" />
-                International Road Freight
-              </Link>
-            </li>
-            <li>
-              <Link to="/services/rail" className="hover:text-primary-light transition-colors flex items-center gap-1.5 group">
-                <ChevronRight size={12} className="text-slate-600 group-hover:text-primary-light transition-colors" />
-                Rail & Wagon Transport
-              </Link>
-            </li>
-            <li>
-              <Link to="/services/air" className="hover:text-primary-light transition-colors flex items-center gap-1.5 group">
-                <ChevronRight size={12} className="text-slate-600 group-hover:text-primary-light transition-colors" />
-                Express Air Cargo Solutions
-              </Link>
-            </li>
-            <li>
-              <Link to="/services/ocean" className="hover:text-primary-light transition-colors flex items-center gap-1.5 group">
-                <ChevronRight size={12} className="text-slate-600 group-hover:text-primary-light transition-colors" />
-                Ocean & Sea Freight Forwarding
-              </Link>
-            </li>
-            <li>
-              <Link to="/routes" className="hover:text-primary-light transition-colors flex items-center gap-1.5 group pt-1">
-                <ChevronRight size={12} className="text-slate-600 group-hover:text-primary-light transition-colors" />
-                Trade Corridors & Network Routes
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Dispatch Contact Info */}
-        <div>
-          <h4 className="text-white font-bold text-sm tracking-wide uppercase mb-5 pb-2 border-b border-slate-800/80 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-primary"></span>
-            24/7 Dispatch Desk
-          </h4>
-          <ul className="space-y-4 text-xs">
-            <li className="flex items-start gap-3">
-              <PhoneCall size={16} className="text-primary-light mt-0.5 shrink-0" />
-              <div>
-                <p className="font-semibold text-slate-200">Hotline Phone Numbers:</p>
-                <p className="text-slate-400 mt-0.5">+993 65892496</p>
-                <p className="text-slate-400">+98 9159161665</p>
-              </div>
-            </li>
-            <li className="flex items-start gap-3">
-              <Phone size={16} className="text-primary-light mt-0.5 shrink-0" />
-              <div>
-                <p className="font-semibold text-slate-200">Direct WhatsApp Desk:</p>
-                <p className="text-slate-400 mt-0.5">+971 50 655 1006</p>
-                <p className="text-slate-400">+995 555 442557</p>
-              </div>
-            </li>
-            <li className="flex items-start gap-3">
-              <Mail size={16} className="text-primary-light mt-0.5 shrink-0" />
-              <div>
-                <p className="font-semibold text-slate-200">General Inquiries:</p>
-                <a href="mailto:info@prplogistic.com" className="hover:text-primary-light transition-colors text-slate-400 underline decoration-slate-700">
-                  info@prplogistic.com
-                </a>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        {/* Global Operations Hubs */}
-        <div>
-          <h4 className="text-white font-bold text-sm tracking-wide uppercase mb-5 pb-2 border-b border-slate-800/80 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-primary"></span>
-            Global Operations Hubs
-          </h4>
-          <ul className="space-y-4 text-xs">
-            <li className="flex gap-3">
-              <MapPin size={16} className="text-primary-light mt-0.5 shrink-0" />
-              <div>
-                <p className="font-semibold text-slate-200">Turkmenistan Office:</p>
-                <p className="text-slate-400 leading-relaxed mt-0.5">
-                  334, 1958 (Andalyp) Street, Berkararlyk District, Ashgabat, Turkmenistan
-                </p>
-              </div>
-            </li>
-            <li className="flex gap-3">
-              <MapPin size={16} className="text-primary-light mt-0.5 shrink-0" />
-              <div>
-                <p className="font-semibold text-slate-200">Emirates Office:</p>
-                <p className="text-slate-400 leading-relaxed mt-0.5">
-                  Unit 7, 20th Floor, Prime Tower, Business Bay, Dubai, United Arab Emirates
-                </p>
-              </div>
-            </li>
-          </ul>
+        {/* ── Office addresses strip ── */}
+        <div
+          className="mt-12 pt-8 grid grid-cols-1 sm:grid-cols-2 gap-6"
+          style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+        >
+          <div className="flex items-start gap-3">
+            <MapPin size={15} className="shrink-0 mt-0.5" style={{ color: 'var(--color-primary)' }} />
+            <div>
+              <p className="text-white text-xs font-semibold mb-0.5">Turkmenistan Office</p>
+              <p className="text-slate-400 text-xs leading-relaxed">
+                334, 1958 (Andalyp) Street, Berkararlyk District, Ashgabat, Turkmenistan
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <MapPin size={15} className="shrink-0 mt-0.5" style={{ color: 'var(--color-primary-light)' }} />
+            <div>
+              <p className="text-white text-xs font-semibold mb-0.5">Emirates Office</p>
+              <p className="text-slate-500 text-xs leading-relaxed">
+                Unit 7, 20th Floor, Prime Tower, Business Bay, Dubai, United Arab Emirates
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Footer Bottom copyright and scroll */}
-      <div className="border-t border-slate-800/80 pt-6 mt-6">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-slate-500 text-center md:text-left">
-            © {new Date().getFullYear()} PPR International Transport & Logistics Co. All rights reserved.
+      {/* ── Bottom bar ── */}
+      <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+        <div className="container-site py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-slate-500 text-xs text-center sm:text-left">
+            &copy; {new Date().getFullYear()} PPR International Transport &amp; Logistics Co. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <span className="text-[11px] text-slate-500 hidden sm:inline">Enterprise Logistics Architecture</span>
+          <div className="flex items-center gap-5">
+            <span className="text-slate-500 text-xs hidden sm:inline">Enterprise Logistics Architecture</span>
             <a
               href="#top"
               onClick={scrollToTop}
-              className="w-9 h-9 rounded-xl bg-slate-800 hover:bg-primary text-slate-300 hover:text-white flex items-center justify-center shadow-lg transition-all duration-200 border border-slate-700"
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white transition-all duration-200"
+              style={{
+                background: 'rgba(255,255,255,0.05)',
+                border: '1px solid rgba(255,255,255,0.08)',
+              }}
               aria-label="Back to top"
             >
-              <ArrowUp size={16} />
+              <ArrowUp size={14} />
             </a>
           </div>
         </div>

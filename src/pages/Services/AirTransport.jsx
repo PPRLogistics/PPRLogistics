@@ -13,10 +13,10 @@ export default function AirTransport() {
   return (
     <div className="space-y-16 pb-20 font-sans">
       {/* Page Header Banner */}
-      <section className="bg-[#0b132b] py-20 text-white text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-600/20 via-transparent to-transparent pointer-events-none"></div>
+      <section className="bg-[color:var(--color-navy-dark)] py-20 text-white text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[color:var(--color-primary)]/20 via-transparent to-transparent pointer-events-none"></div>
         <div className="relative z-10 max-w-4xl mx-auto px-6 space-y-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-blue-200 bg-white/10 px-4 py-1.5 rounded-full border border-white/15 inline-block">
+          <span className="text-xs font-bold uppercase tracking-widest text-[color:var(--color-primary)] bg-white/10 px-4 py-1.5 rounded-full border border-white/15 inline-block">
             Express Air Freight
           </span>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight flex items-center justify-center gap-3">
@@ -66,9 +66,9 @@ export default function AirTransport() {
             alt="Cargo plane transit logistics"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0b132b]/80 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--color-navy-dark)]/80 via-transparent to-transparent"></div>
           <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
-            <span className="text-[11px] uppercase font-bold tracking-widest text-blue-200 bg-white/10 px-3 py-1 rounded-full border border-white/15">
+            <span className="text-[11px] uppercase font-bold tracking-widest text-[color:var(--color-primary)] bg-white/10 px-3 py-1 rounded-full border border-white/15">
               IATA Standard Handling & Airport Charters
             </span>
           </div>
@@ -79,7 +79,7 @@ export default function AirTransport() {
       <section className="max-w-7xl mx-auto px-6">
         <div className="bg-slate-100/70 p-6 sm:p-12 rounded-3xl border border-slate-200/80 space-y-8">
           <div className="text-center max-w-xl mx-auto space-y-2">
-            <span className="text-xs font-bold text-primary uppercase tracking-widest">Rate Calculation</span>
+            <div className="badge mx-auto">Rate Calculation</div>
             <h2 className="text-3xl font-extrabold text-slate-900">Air Freight Inquiry Form</h2>
             <p className="text-slate-600 text-xs sm:text-sm">
               Complete the form with origin/destination airports, weights, and commodity info for a flight slot quote.
