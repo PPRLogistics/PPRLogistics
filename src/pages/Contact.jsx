@@ -45,7 +45,6 @@ export default function Contact() {
       }
     } catch (error) {
       console.log("Submitting via direct dispatch fallback...", error);
-      // Client-side graceful fallback simulation
       setTimeout(() => {
         setIsSuccess(true);
         setFormData({
@@ -62,21 +61,15 @@ export default function Contact() {
 
   const offices = [
     {
-      country: 'U.S. Operations Office',
-      address: '330 W Armory Dr, South Holland, IL 60473, USA',
-      phones: ['+1 (732) 218-9902'],
-      whatsapp: '+1 (732) 218-9902',
-    },
-    {
-      country: 'Turkmenistan Regional Office',
+      country: 'Turkmenistan Office',
       address: '334, 1958 (Andalyp) Street, Berkararlyk District, Ashgabat, Turkmenistan',
-      phones: ['+993 65892496'],
-      whatsapp: '+993 65892496',
+      phones: ['+993 65892496', '+993 65892497'],
+      whatsapp: '+995 555 442557',
     },
     {
-      country: 'Emirates Corporate Office',
-      address: 'Unit 7, 20th Floor, Prime Tower, Business Bay, Dubai, UAE',
-      phones: ['+971 50 655 1006'],
+      country: 'United Arab Emirates Office',
+      address: 'Unit 7, 20th Floor, Prime Tower, Business Bay, Dubai, United Arab Emirates',
+      phones: ['+98 9159161665'],
       whatsapp: '+971 50 655 1006',
     },
   ];
@@ -84,54 +77,52 @@ export default function Contact() {
   return (
     <div className="space-y-16 pb-20 font-sans">
       {/* Page Header Banner */}
-      <section className="bg-[color:var(--color-navy-dark)] py-20 text-white text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[color:var(--color-primary)]/20 via-transparent to-transparent pointer-events-none"></div>
-        <div className="relative z-10 max-w-4xl mx-auto px-6 space-y-4">
-          <div className="badge mx-auto">24/7 Global Communications</div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Contact Our Dispatch Desk</h1>
+      <section className="bg-[color:var(--color-navy)] py-16 md:py-20 text-white text-center relative overflow-hidden">
+        <div className="relative z-10 max-w-4xl mx-auto px-6 space-y-3">
+          <span className="text-xs font-bold uppercase tracking-widest text-[color:var(--color-primary-light)] bg-white/10 px-3.5 py-1 rounded-full border border-white/10">
+            Get In Touch
+          </span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">Contact Our Team</h1>
           <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-normal leading-relaxed">
-            Have questions about freight rates, route schedules, or custom clearance documentation? Connect directly with our logistics managers.
+            Have questions about freight rates, route schedules, or custom clearance documentation? Connect directly with our logistics team.
           </p>
         </div>
       </section>
 
       {/* Main Content Grid */}
-      <section className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <section className="container-site grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Contact Info (5 columns) */}
         <div className="lg:col-span-5 space-y-8">
           <div className="space-y-2">
-            <span className="text-primary font-bold text-xs uppercase tracking-widest bg-primary/5 px-3 py-1 rounded-full border border-primary/10 inline-block">
+            <span className="text-[color:var(--color-primary)] font-bold text-xs uppercase tracking-widest block">
               Regional Representatives
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">Global Office Network</h2>
-            <p className="text-slate-600 text-xs sm:text-sm">Direct channels to our international operational desks.</p>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">Office Contacts</h2>
+            <p className="text-slate-600 text-xs sm:text-sm">Reach out directly to our regional operational desks.</p>
           </div>
 
           <div className="space-y-6">
             {offices.map((office) => (
               <div key={office.country} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4 hover:shadow-md transition-shadow">
-                <h3 className="font-extrabold text-slate-900 text-base border-b border-slate-100 pb-3 flex items-center justify-between">
-                  <span>{office.country}</span>
-                  <span className="text-[11px] font-bold text-[var(--color-primary)] bg-[var(--color-primary-muted)] px-2.5 py-0.5 rounded-full border border-orange-500/20">
-                    Active Desk
-                  </span>
+                <h3 className="font-extrabold text-slate-900 text-base border-b border-slate-100 pb-3">
+                  {office.country}
                 </h3>
                 <ul className="space-y-3 text-xs text-slate-600">
-                  <li className="flex gap-2.5">
-                    <MapPin size={16} className="text-[var(--color-primary)] shrink-0 mt-0.5" />
+                  <li className="flex gap-3 items-start">
+                    <MapPin size={16} className="text-[color:var(--color-primary)] shrink-0 mt-0.5" />
                     <span className="leading-relaxed text-slate-700 font-medium">{office.address}</span>
                   </li>
-                  <li className="flex gap-2.5">
-                    <Phone size={16} className="text-[var(--color-primary)] shrink-0 mt-0.5" />
+                  <li className="flex gap-3 items-start">
+                    <Phone size={16} className="text-[color:var(--color-primary)] shrink-0 mt-0.5" />
                     <div>
                       {office.phones.map((p) => (
                         <p key={p} className="font-semibold text-slate-900">{p}</p>
                       ))}
                     </div>
                   </li>
-                  <li className="flex gap-2.5">
-                    <Clock size={16} className="text-[var(--color-primary)] shrink-0 mt-0.5" />
-                    <span className="text-slate-600">WhatsApp Connect: <strong className="text-slate-900">{office.whatsapp}</strong></span>
+                  <li className="flex gap-3 items-center">
+                    <Clock size={16} className="text-[color:var(--color-primary)] shrink-0" />
+                    <span className="text-slate-600">WhatsApp: <strong className="text-slate-900">{office.whatsapp}</strong></span>
                   </li>
                 </ul>
               </div>
@@ -139,13 +130,13 @@ export default function Contact() {
           </div>
 
           {/* Email Support Card */}
-          <div className="bg-[var(--color-navy)] text-white p-6 rounded-2xl border border-white/10 flex items-start gap-4 shadow-xl">
-            <div className="w-12 h-12 rounded-xl bg-[var(--color-primary)] flex items-center justify-center text-white shrink-0 shadow-md">
-              <Mail size={22} />
+          <div className="bg-[color:var(--color-navy)] text-white p-6 rounded-2xl border border-white/10 flex items-start gap-4 shadow-lg">
+            <div className="w-11 h-11 rounded-xl bg-[color:var(--color-primary)] flex items-center justify-center text-white shrink-0 shadow-md">
+              <Mail size={20} />
             </div>
             <div className="space-y-1">
-              <h4 className="font-extrabold text-sm text-white">General &amp; Enterprise Inquiries</h4>
-              <p className="text-xs text-[var(--color-text-on-dark)]">Fast 24-hour response turnaround on global routes.</p>
+              <h4 className="font-extrabold text-sm text-white">General Inquiries</h4>
+              <p className="text-xs text-[var(--color-text-on-dark)]">Reach out via email for freight documentation &amp; inquiries.</p>
               <a href="mailto:info@prplogistic.com" className="text-[var(--color-primary-light)] font-bold text-xs hover:underline pt-1 inline-block">
                 info@prplogistic.com
               </a>
@@ -163,11 +154,11 @@ export default function Contact() {
                 </div>
                 <h3 className="text-2xl font-extrabold text-slate-900">Message Transmitted</h3>
                 <p className="text-slate-600 max-w-sm mx-auto text-sm leading-relaxed">
-                  Thank you for reaching out to PPR Logistics. Our customer support desk will evaluate your request and reply shortly.
+                  Thank you for reaching out to PPR Logistics. Our team will review your message and reply shortly.
                 </p>
                 <button
                   onClick={() => setIsSuccess(false)}
-                  className="btn-primary"
+                  className="btn btn-primary"
                 >
                   Send Another Message
                 </button>
@@ -177,7 +168,7 @@ export default function Contact() {
                 <div className="space-y-1 pb-4 border-b border-slate-100">
                   <span className="text-xs font-bold text-[var(--color-primary)] uppercase tracking-widest">Direct Message</span>
                   <h3 className="text-2xl font-extrabold text-slate-900">Send an Inquiry</h3>
-                  <p className="text-slate-500 text-xs">Fill out the parameters below to connect with a freight specialist.</p>
+                  <p className="text-slate-500 text-xs">Fill out the parameters below to connect with our freight team.</p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -192,7 +183,7 @@ export default function Contact() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="John Smith"
+                      placeholder="Your Name"
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] transition"
                     />
                   </div>
@@ -200,7 +191,7 @@ export default function Contact() {
                   {/* Email */}
                   <div>
                     <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
-                      Corporate Email *
+                      Email Address *
                     </label>
                     <input
                       type="email"
@@ -208,7 +199,7 @@ export default function Contact() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="john@company.com"
+                      placeholder="email@example.com"
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] transition"
                     />
                   </div>
@@ -217,7 +208,7 @@ export default function Contact() {
                 {/* Subject */}
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
-                    Subject / Route Concern *
+                    Subject / Request Details *
                   </label>
                   <input
                     type="text"
@@ -225,7 +216,7 @@ export default function Contact() {
                     required
                     value={formData.subject}
                     onChange={handleChange}
-                    placeholder="Wagon rates, air charter inquiry, customs clearance, etc."
+                    placeholder="Wagon transit rates, general request, customs clearance, etc."
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] transition"
                   />
                 </div>
@@ -241,7 +232,7 @@ export default function Contact() {
                     required
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Provide details about your cargo volume, origin, target timeframe, or specialized handling..."
+                    placeholder="Provide details about your cargo, origin/destination, target timeframe, or specialized handling..."
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] transition resize-none"
                   />
                 </div>
@@ -250,8 +241,8 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full py-4 px-6 rounded-xl text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center gap-2.5 cursor-pointer ${
-                    isSubmitting ? 'bg-slate-400 cursor-not-allowed' : 'btn-primary'
+                  className={`btn btn-primary w-full justify-center ${
+                    isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
                   }`}
                 >
                   {isSubmitting ? 'Transmitting Message...' : 'Send Message'}

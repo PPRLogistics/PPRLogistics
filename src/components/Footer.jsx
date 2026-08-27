@@ -7,7 +7,7 @@ const navSections = [
   {
     label: 'Company',
     links: [
-      { name: 'Home',    path: '/' },
+      { name: 'Home',     path: '/' },
       { name: 'About PPR', path: '/about' },
       { name: 'Contact Us', path: '/contact' },
     ],
@@ -39,7 +39,7 @@ export default function Footer() {
 
   return (
     <footer
-      style={{ background: 'var(--color-navy)', borderTop: '1px solid rgba(255,255,255,0.05)' }}
+      style={{ background: 'var(--color-navy)', borderTop: '1px solid rgba(255,255,255,0.06)' }}
       className="text-slate-400 font-sans"
     >
       {/* ── Main footer grid ── */}
@@ -53,13 +53,10 @@ export default function Footer() {
                 src={logoImg}
                 alt="PPR Logistics"
                 className="h-10 w-auto object-contain"
-                style={{ filter: 'brightness(1)' }}
               />
             </Link>
             <p className="text-sm leading-relaxed text-slate-300 max-w-xs">
-              PPR International Transport &amp; Logistics — specialist freight forwarder
-              covering road, rail, sea, and air across Central Asia, the Middle East,
-              Russia, and Europe.
+              PPR International Transport &amp; Logistics — freight forwarding by road, rail, sea, and air connecting regional trade corridors.
             </p>
             <div
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold"
@@ -70,7 +67,7 @@ export default function Footer() {
               }}
             >
               <Shield size={13} style={{ color: 'var(--color-primary)' }} />
-              Licensed &amp; SMGS/CMR Certified Carrier
+              CMR &amp; SMGS Standardized Carrier
             </div>
           </div>
 
@@ -123,9 +120,9 @@ export default function Footer() {
                     style={{ color: 'var(--color-primary)' }}
                   />
                   <div>
-                    <p className="font-medium text-slate-300">Dispatch Hotline</p>
+                    <p className="font-medium text-slate-200">Turkmenistan Desk</p>
                     <p className="text-xs mt-0.5">+993 65892496</p>
-                    <p className="text-xs">+98 9159161665</p>
+                    <p className="text-xs">+993 65892497</p>
                   </div>
                 </a>
               </li>
@@ -137,9 +134,9 @@ export default function Footer() {
                     style={{ color: 'var(--color-primary)' }}
                   />
                   <div>
-                    <p className="font-medium text-slate-300">WhatsApp</p>
+                    <p className="font-medium text-slate-200">UAE &amp; Regional</p>
                     <p className="text-xs mt-0.5">+971 50 655 1006</p>
-                    <p className="text-xs">+995 555 442557</p>
+                    <p className="text-xs">+98 9159161665</p>
                   </div>
                 </div>
               </li>
@@ -154,8 +151,8 @@ export default function Footer() {
                     style={{ color: 'var(--color-primary)' }}
                   />
                   <div>
-                    <p className="font-medium text-slate-300">Email</p>
-                    <p className="text-xs mt-0.5 underline decoration-slate-700 hover:decoration-current">
+                    <p className="font-medium text-slate-200">Email</p>
+                    <p className="text-xs mt-0.5 underline decoration-slate-600 hover:decoration-current">
                       info@prplogistic.com
                     </p>
                   </div>
@@ -165,7 +162,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ── Office addresses strip ── */}
+        {/* ── Real Office addresses strip ── */}
         <div
           className="mt-12 pt-8 grid grid-cols-1 sm:grid-cols-2 gap-6"
           style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
@@ -182,8 +179,8 @@ export default function Footer() {
           <div className="flex items-start gap-3">
             <MapPin size={15} className="shrink-0 mt-0.5" style={{ color: 'var(--color-primary-light)' }} />
             <div>
-              <p className="text-white text-xs font-semibold mb-0.5">Emirates Office</p>
-              <p className="text-slate-500 text-xs leading-relaxed">
+              <p className="text-white text-xs font-semibold mb-0.5">United Arab Emirates Office</p>
+              <p className="text-slate-400 text-xs leading-relaxed">
                 Unit 7, 20th Floor, Prime Tower, Business Bay, Dubai, United Arab Emirates
               </p>
             </div>
@@ -198,7 +195,6 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} PPR International Transport &amp; Logistics Co. All rights reserved.
           </p>
           <div className="flex items-center gap-5">
-            <span className="text-slate-500 text-xs hidden sm:inline">Enterprise Logistics Architecture</span>
             <a
               href="#top"
               onClick={scrollToTop}
