@@ -118,7 +118,7 @@ export default function Header() {
                   <div key={link.name} className="relative group/nav">
                     <Link
                       to={link.path}
-                      className={`flex items-center gap-1 text-sm font-semibold transition-colors duration-150 py-1 ${
+                      className={`flex items-center gap-1 text-base font-semibold transition-colors duration-150 py-1 ${
                         isActive
                           ? 'text-[color:var(--color-primary)]'
                           : 'text-slate-600 hover:text-[color:var(--color-charcoal)]'
@@ -146,7 +146,7 @@ export default function Header() {
                         <Link
                           key={sub.name}
                           to={sub.path}
-                          className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 group/sub ${
+                          className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-base font-semibold transition-all duration-150 group/sub ${
                             location.pathname === sub.path
                               ? 'bg-[color:var(--color-primary-muted)] text-[color:var(--color-primary)]'
                               : 'text-slate-700 hover:bg-slate-50 hover:text-[color:var(--color-charcoal)]'
@@ -176,7 +176,7 @@ export default function Header() {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`relative text-sm font-semibold transition-colors duration-150 py-1 ${
+                  className={`relative text-base font-semibold transition-colors duration-150 py-1 ${
                     isActive
                       ? 'text-[color:var(--color-primary)]'
                       : 'text-slate-600 hover:text-[color:var(--color-charcoal)]'
@@ -196,7 +196,7 @@ export default function Header() {
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center justify-self-end">
-            <Link to="/contact" className="btn btn-primary text-xs font-bold tracking-wide uppercase">
+            <Link to="/contact" className="btn btn-primary text-sm font-bold tracking-wide uppercase">
               Request a Quote
               <ArrowRight size={14} />
             </Link>
@@ -223,7 +223,7 @@ export default function Header() {
                   <div>
                     <button
                       onClick={() => setIsServicesOpen(!isServicesOpen)}
-                      className="flex justify-between items-center w-full text-white font-semibold py-3 border-b border-white/6 text-sm"
+                      className="flex justify-between items-center w-full text-white font-semibold py-3 border-b border-white/6 text-base"
                     >
                       {link.name}
                       <ChevronDown
@@ -237,7 +237,7 @@ export default function Header() {
                           <Link
                             key={sub.name}
                             to={sub.path}
-                            className="flex items-center gap-2 py-2 text-sm text-slate-300 hover:text-white font-medium transition-colors"
+                            className="flex items-center gap-2 py-2 text-base text-slate-300 hover:text-white font-medium transition-colors"
                           >
                             <span style={{ color: 'var(--color-primary)' }}>{sub.icon}</span>
                             {sub.name}
@@ -249,7 +249,7 @@ export default function Header() {
                 ) : (
                   <Link
                     to={link.path}
-                    className={`block py-3 border-b border-white/6 text-sm font-semibold transition-colors ${
+                    className={`block py-3 border-b border-white/6 text-base font-semibold transition-colors ${
                       location.pathname === link.path
                         ? 'text-[color:var(--color-primary)]'
                         : 'text-white hover:text-[color:var(--color-primary-light)]'
@@ -261,7 +261,7 @@ export default function Header() {
               </div>
             ))}
             <div className="pt-4 space-y-3">
-              <Link to="/contact" className="btn btn-primary w-full justify-center text-xs uppercase tracking-wide">
+              <Link to="/contact" className="btn btn-primary w-full justify-center text-sm uppercase tracking-wide">
                 Request a Quote
                 <ArrowRight size={14} />
               </Link>
