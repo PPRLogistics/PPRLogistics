@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
+import { MapPin, Mail, Send, CheckCircle } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -61,23 +61,15 @@ export default function Contact() {
 
   const offices = [
     {
-      country: 'Turkmenistan Office',
-      address: '334, 1958 (Andalyp) Street, Berkararlyk District, Ashgabat, Turkmenistan',
-      phones: ['+993 65892496', '+993 65892497'],
-      whatsapp: '+995 555 442557',
-    },
-    {
-      country: 'United Arab Emirates Office',
-      address: 'Unit 7, 20th Floor, Prime Tower, Business Bay, Dubai, United Arab Emirates',
-      phones: ['+98 9159161665'],
-      whatsapp: '+971 50 655 1006',
+      country: 'US Location',
+      address: '334 W Armory Dr, Thornton, IL 60476, USA',
     },
   ];
 
   return (
-    <div className="space-y-16 pb-20 font-sans">
+    <div className="pb-12 font-sans">
       {/* Page Header Banner */}
-      <section className="bg-[color:var(--color-navy)] py-16 md:py-20 text-white text-center relative overflow-hidden">
+      <section className="bg-[color:var(--color-navy)] py-12 md:py-14 text-white text-center relative overflow-hidden">
         <div className="relative z-10 max-w-4xl mx-auto px-6 space-y-3">
           <span className="text-xs font-bold uppercase tracking-widest text-[color:var(--color-primary-light)] bg-white/10 px-3.5 py-1 rounded-full border border-white/10">
             Get In Touch
@@ -90,20 +82,20 @@ export default function Contact() {
       </section>
 
       {/* Main Content Grid */}
-      <section className="container-site grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <section className="container-site grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 py-10 md:py-12">
         {/* Contact Info (5 columns) */}
-        <div className="lg:col-span-5 space-y-8">
+        <div className="lg:col-span-5 space-y-6">
           <div className="space-y-2">
             <span className="text-[color:var(--color-primary)] font-bold text-xs uppercase tracking-widest block">
-              Regional Representatives
+              US Location
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">Office Contacts</h2>
-            <p className="text-slate-600 text-xs sm:text-sm">Reach out directly to our regional operational desks.</p>
+            <p className="text-slate-600 text-xs sm:text-sm">Visit our office or contact our logistics team.</p>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-4">
             {offices.map((office) => (
-              <div key={office.country} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4 hover:shadow-md transition-shadow">
+              <div key={office.country} className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3 hover:shadow-md transition-shadow">
                 <h3 className="font-extrabold text-slate-900 text-base border-b border-slate-100 pb-3">
                   {office.country}
                 </h3>
@@ -112,25 +104,13 @@ export default function Contact() {
                     <MapPin size={16} className="text-[color:var(--color-primary)] shrink-0 mt-0.5" />
                     <span className="leading-relaxed text-slate-700 font-medium">{office.address}</span>
                   </li>
-                  <li className="flex gap-3 items-start">
-                    <Phone size={16} className="text-[color:var(--color-primary)] shrink-0 mt-0.5" />
-                    <div>
-                      {office.phones.map((p) => (
-                        <p key={p} className="font-semibold text-slate-900">{p}</p>
-                      ))}
-                    </div>
-                  </li>
-                  <li className="flex gap-3 items-center">
-                    <Clock size={16} className="text-[color:var(--color-primary)] shrink-0" />
-                    <span className="text-slate-600">WhatsApp: <strong className="text-slate-900">{office.whatsapp}</strong></span>
-                  </li>
                 </ul>
               </div>
             ))}
           </div>
 
           {/* Email Support Card */}
-          <div className="bg-[color:var(--color-navy)] text-white p-6 rounded-2xl border border-white/10 flex items-start gap-4 shadow-lg">
+          <div className="bg-[color:var(--color-navy)] text-white p-5 rounded-2xl border border-white/10 flex items-start gap-4 shadow-sm">
             <div className="w-11 h-11 rounded-xl bg-[color:var(--color-primary)] flex items-center justify-center text-white shrink-0 shadow-md">
               <Mail size={20} />
             </div>
@@ -146,7 +126,7 @@ export default function Contact() {
 
         {/* Contact Form (7 columns) */}
         <div className="lg:col-span-7">
-          <div className="bg-white p-6 sm:p-8 md:p-10 rounded-2xl shadow-xl border border-slate-200/80">
+          <div className="bg-white p-5 sm:p-7 md:p-8 rounded-2xl shadow-md border border-slate-200/80">
             {isSuccess ? (
               <div className="text-center py-12 space-y-5 animate-fade-in-up">
                 <div className="w-16 h-16 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto shadow-inner border border-green-200">
